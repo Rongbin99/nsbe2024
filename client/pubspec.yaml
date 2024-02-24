@@ -13,7 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   google_maps_flutter: ^2.5.3
   location: ^4.3.0  # Add this line
-  flutter_image_compress: ^2.1.0
+  flutter_image_compress: ^1.1.0
 
 dev_dependencies:
   flutter_test:
