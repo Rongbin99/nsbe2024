@@ -13,8 +13,6 @@ dependencies:
   cupertino_icons: ^1.0.6
   google_maps_flutter: ^2.5.3
   location: ^4.3.0  # Add this line
-  google_maps_flutter: ^2.5.3
-  location: ^4.3.0  # Add this line
 
 dev_dependencies:
   flutter_test:
