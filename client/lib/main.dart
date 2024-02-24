@@ -36,20 +36,24 @@ class MyApp extends StatelessWidget {
                   color: Colors.blue,
                 ),
               ),
+              Builder(
+                builder: (context) => 
               ListTile(
                 title: const Text('Page 1'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Page1()));
                 },
-              ),
+              ),),
+              Builder(
+                builder: (context) =>
               ListTile(
                 title: const Text('Page 2'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Page2()));
                 },
-              ),
+              ),),
             ],
           ),
         ),
