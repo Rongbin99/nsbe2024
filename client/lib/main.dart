@@ -1,9 +1,14 @@
+// main.dart
 import 'package:flutter/material.dart';
+import 'page1.dart';
+import 'page2.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,36 +17,54 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: title,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text(title),
-        ),
-        body: CustomScrollView(
-          slivers: [
-            // Add the app bar to the CustomScrollView.
-            const SliverAppBar(
-              // Provide a standard title.
-              title: Text(title2),
-              // Allows the user to reveal the app bar if they begin scrolling
-              // back up the list of items.
-              floating: true,
-              // Display a placeholder widget to visualize the shrinking size.
-              flexibleSpace: Placeholder(),
-              // Make the initial height of the SliverAppBar larger than normal.
-              expandedHeight: 200,
+      home: Builder( // add this
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            title: const Text(title),
+          ),
+          drawer: Drawer(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                DrawerHeader(
+                  child: Text('Drawer Header'),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                ),
+                ListTile(
+                  title: Text('Page 1'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Page1()));
+                  },
+                ),
+                ListTile(
+                  title: Text('Page 2'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Page2()));
+                  },
+                ),
+              ],
             ),
-            // Next, create a SliverList
-            SliverList(
-              // Use a delegate to build items as they're scrolled on screen.
-              delegate: SliverChildBuilderDelegate(
-                // The builder function returns a ListTile with a title that
-                // displays the index of the current item.
-                (context, index) => ListTile(title: Text('Item #$index')),
-                // Builds 1000 ListTiles
-                childCount: 1000,
+          ),
+          body: CustomScrollView(
+            slivers: [
+              const SliverAppBar(
+                title: Text(title2),
+                floating: true,
+                flexibleSpace: Placeholder(),
+                expandedHeight: 200,
               ),
-            ),
-          ],
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => ListTile(title: Text('Item #$index')),
+                  childCount: 1000,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
