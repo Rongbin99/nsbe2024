@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   google_maps_flutter: ^2.5.3
   location: ^4.3.0  # Add this line
+  flutter_image_compress: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +22,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/jim.png
+    - assets/images/01-cn-tower.jpg
+    - assets/background.png
