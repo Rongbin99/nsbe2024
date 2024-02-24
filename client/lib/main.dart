@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: <Widget>[
               const DrawerHeader(
-                child: Text('Drawer Header'),
+                child: Text('GoMommy'),
                 decoration: BoxDecoration(
                   color: Colors.blue,
                 ),
