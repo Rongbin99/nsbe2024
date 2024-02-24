@@ -24,3 +24,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/jim.png
+    - assets/images/01-cn-tower.jpg
+    - assets/background.png
