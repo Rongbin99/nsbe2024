@@ -24,7 +24,7 @@ class _CameraState extends State<Camera> {
           child: const Text('Image Preview'),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(page3.getPath()), //change to server URL of image
+              image: NetworkImage("http://127.0.0.1:5000/static/testimages/${page3.getPath()}"), //change to server URL of image
               fit: BoxFit.cover,                  //you can use this method to get the location of the saved image
             ),                                  //and then send it to the server                          
           ),
