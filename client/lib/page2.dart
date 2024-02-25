@@ -20,7 +20,7 @@ class Page2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: const Text('Profile'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -31,11 +31,11 @@ class Page2 extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 _buildGradient(),
-                Column(
+                const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(8.0), // adjust the padding as needed
+                      padding: EdgeInsets.all(8.0), // adjust the padding as needed
                       child: Align(
                         alignment: Alignment.center, // adjust the alignment as needed
                         child: CircleAvatar(
