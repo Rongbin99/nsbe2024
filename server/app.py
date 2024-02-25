@@ -2,8 +2,10 @@ import io
 import sqlite3
 from flask import Flask, request, jsonify, send_file, g
 import math
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 def haversine(lat1, lon1, lat2, lon2):
     # Convert latitude and longitude from degrees to radians
@@ -70,25 +72,23 @@ def get_leaderboard(user_id):
 
 @app.route("/feed")
 def feed():
-    conn = sqlite3.connect("data/app.db")
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM posts;")
-    entries = cur.fetchall()
-    cur.close()
-
-    for entry in entries:
-        entries[1] = entries[1].split(";")
-
-    return entries
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM Posts")
+    posts = cur.fetchall()
+    return jsonify(posts)
 
 
-@app.route("/images/<thumb>")
-def getimage(thumb):
-    conn = sqlite3.connect("data/app.db")
-    img = conn.execute("SELECT ? FROM thumbnails;", thumb)
-    conn.close()
+    # conn = sqlite3.connect("data/app.db")
+    # cur = conn.cursor()
+    # cur.execute("SELECT * FROM posts;")
+    # entries = cur.fetchall()
+    # cur.close()
 
-    return send_file(io.BytesIO(img), mimetype="image/jpeg")
+    # for entry in entries:
+    #     entries[1] = entries[1].split(";")
+
+    # return entries
 
 
 @app.route("/upload")
