@@ -9,7 +9,7 @@ import 'dart:typed_data';
 import 'package:image_picker_web/image_picker_web.dart';
 
 import 'package:image_picker/image_picker.dart';
-import 'camera.dart';
+import 'page6.dart';
 import 'package:http/http.dart' as http;
 
 var imagePath = "LASAGNA";
@@ -101,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         imagePath = responseBody["vidname"];
                         
                         Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const Camera()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Page6()));
                       } else {
                         print("Image upload failed");
                       }
@@ -142,28 +142,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 margin: const EdgeInsets.only(top: 50),
                 child: ElevatedButton(
                   onPressed: () async {
-                    try {
-                      final image = await controller!.takePicture();
-                      image.readAsBytes().then((bytes) async {
-                        var uri = Uri.http("localhost:5000", "/upload", {
-                          "id": DateTime.now().millisecondsSinceEpoch.toString()
-                        });
+                    final image = await controller!.takePicture();
+                    Uint8List? imageData = await image.readAsBytes();
 
-                        var request = http.MultipartRequest('POST', uri);
-                        request.files.add(http.MultipartFile.fromBytes('image', bytes, filename: 'image.jpg')); // replace 'image.jpg' with your filename
+                    var url = Uri.parse('http://127.0.0.1:5000/upload');
+                    var request = http.MultipartRequest('POST', url);
+                    request.files.add(http.MultipartFile.fromBytes('image', imageData, filename: 'image.jpg'));
+                    var response = await request.send();
+                    if (response.statusCode == 200) {
+                      print("Image uploaded");
+                      http.Response res = await http.Response.fromStream(response);
+                      Map<String, dynamic> responseBody = jsonDecode(res.body);
 
-                        var response = await request.send();
-
-                        // if (response.statusCode == 200) {
-                        //   print('Upload successful');
-                        // } else {
-                        //   print('Upload failed');
-                        // }
-                      });
-                    Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Camera()));
-                    } catch (e) {
-                      print(e);
+                      imagePath = responseBody["vidname"];
+                      
+                      Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Page6()));
+                    } else {
+                      print("Image upload failed");
                     }
                   },
                   child: const Text("Take Photo",
@@ -180,29 +176,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 margin: const EdgeInsets.only(top: 50),
                 child: ElevatedButton(
                   onPressed: () async {
-                    final picker = ImagePicker();
-                    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-                    if (pickedFile != null) {
-                      imagePath = pickedFile.path;
+                    Uint8List? imageData = await ImagePickerWeb.getImageAsBytes();
 
-                      // Create a multipart request
-                      var request = http.MultipartRequest('POST', Uri.parse('http://your-server.com/upload'));
+                    var url = Uri.parse('http://127.0.0.1:5000/upload');
+                    var request = http.MultipartRequest('POST', url);
+                    request.files.add(http.MultipartFile.fromBytes('image', imageData!, filename: 'image.jpg'));
+                    var response = await request.send();
+                    if (response.statusCode == 200) {
+                      print("Image uploaded");
+                      http.Response res = await http.Response.fromStream(response);
+                      Map<String, dynamic> responseBody = jsonDecode(res.body);
 
-                      // Attach the file to the request
-                      request.files.add(await http.MultipartFile.fromPath('image', pickedFile.path));
-
-                      // Send the request
-                      var response = await request.send();
-
-                      // Check the status code of the response
-                      if (response.statusCode == 200) {
-                        print('Uploaded successfully');
-                      } else {
-                        print('Upload failed');
-                      }
-
+                      imagePath = responseBody["vidname"];
+                      
                       Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Camera()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Page6()));
+                    } else {
+                      print("Image upload failed");
                     }
                   },
                   child: const Text("Pick Image from Gallery",

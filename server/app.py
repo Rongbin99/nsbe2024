@@ -7,6 +7,7 @@ import os
 import ai
 import cv2
 import uuid
+import random
 
 app = Flask(__name__)
 CORS(app)
@@ -55,6 +56,19 @@ def user_profile(user_id):
         return jsonify({"error": "User not found"}), 404
     else:
         return jsonify({"UserID": user[0], "Name": user[1], "Score": user[2]})
+
+@app.route('/newpost/<int:user_id>/<string:imgpath>/<string:lat>/<string:lon>')
+def newpost(user_id, imgpath, lat, lon):
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("INSERT INTO Posts (UserID, ImagePath, Latitude, Longitude) VALUES (?, ?, ?, ?)", (user_id, imgpath, float(lat), float(lon)))
+    db.commit()
+
+    cur.execute("UPDATE Users SET Score = Score + ? WHERE UserID = ?", (random.randint(5, 10), user_id))
+    db.commit()
+
+    return jsonify({"status": "success"})
+
 
 @app.route('/login/<string:username>/<string:password>')
 def login(username, password):

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+import 'user_lib.dart' as user;
+import 'page3_lib.dart' as page3;
 
 class Page6 extends StatefulWidget {
   @override
@@ -10,10 +12,12 @@ class Page6 extends StatefulWidget {
 }
 
 class _Page6State extends State<Page6> {
-  GoogleMapController? mapController;
+  var lat = 0.0;
+  var lng = 0.0;
+  GoogleMapController? mapController; 
   final TextEditingController _searchController = TextEditingController();
   Position? _currentPosition;
-  LatLng _initialcameraposition = LatLng(20.5937, 78.9629);
+  LatLng _initialcameraposition = LatLng(17.6078, 8.0817);
 
   @override
   void initState() {
@@ -45,10 +49,9 @@ class _Page6State extends State<Page6> {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      final lat = data['results'][0]['geometry']['location']['lat'];
-      final lng = data['results'][0]['geometry']['location']['lng'];
-    print(lat);
-    print(lng);
+      lat = data['results'][0]['geometry']['location']['lat'];
+      lng = data['results'][0]['geometry']['location']['lng'];
+      
       mapController?.animateCamera(
         CameraUpdate.newLatLng(
           LatLng(lat, lng),
@@ -56,6 +59,12 @@ class _Page6State extends State<Page6> {
       );
     } else {
       print('Failed to load coordinates');
+    }
+  }
+
+  void _confirmAddress() async {
+    if (lat != 0.0 || lng != 0.0) {
+      await http.get(Uri.parse('http://127.0.0.1:5000/newpost/${user.getUserID()}/${page3.getPath()}/$lat/$lng'));
     }
   }
 
@@ -94,6 +103,10 @@ class _Page6State extends State<Page6> {
           ),
           Container(
             height: 10.0,
+          ),
+          ElevatedButton(
+            onPressed: _confirmAddress,
+            child: Text('Confirm'),
           ),
           Expanded(
             child: GoogleMap(
