@@ -53,7 +53,7 @@ Over the short, and tiresome, span of 24 hours, we are proud to have achieved th
 
 **Building Community Bonds:** As GoMommy marks local checkpoint landmarks, there are opportunities for social interaction among users of the app. This allows for the possibility of social gatherings and activities, ultimately building community bonds and inclusivity.
 
-***In Conclusion: *** GoMommy aims to promote the mental health of youth by encouraging them to go outdoors instead of "doom" scrolling on their phones. This opens up opportunities for social engagement and to strengthen community bonds.
+***In Conclusion:*** GoMommy aims to promote the mental health of youth by encouraging them to go outdoors instead of "doom" scrolling on their phones. This opens up opportunities for social engagement and to strengthen community bonds.
 
 ## ✨ What's next for GoMommy ✨
 The next steps for GoMommy are to refine the current functionalities of our hack and to improve the quality of user experience. This will most likely require a migration to a better framework such as React.js.
