@@ -9,7 +9,6 @@ import 'dart:typed_data';
 import 'package:image_picker_web/image_picker_web.dart';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:gallery_saver/gallery_saver.dart';
 import 'camera.dart';
 import 'package:http/http.dart' as http;
 
