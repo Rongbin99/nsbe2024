@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'dart:math';
+import 'dart:convert';
+import 'user_lib.dart' as user;
+import 'package:http/http.dart' as http;
 
 Widget _buildGradient() {
   return Positioned.fill(
@@ -33,11 +36,18 @@ class _Page2State extends State<Page2> {
   }
 
   Future<Map<String, int>> fetchStats() async {
-    // Replace this with your actual backend call
-    await Future.delayed(const Duration(seconds: 1));
+    final response1 = await http.get(Uri.parse('http://127.0.0.1:5000/getnumposts/${user.getUserID()}'));
+
+    int numposts = jsonDecode(response1.body)["numposts"];
+
+    final response2 = await http.get(Uri.parse('http://127.0.0.1:5000/users/${user.getUserID()}'));
+
+    int score = jsonDecode(response2.body)["Score"];
+
     return {
-      'totalImagesShared': 10,
-      'score': 85,
+      'totalImagesShared': numposts,
+      'score': score,
+      'mastery': 100 * score ~/ 50,
     };
   }
 
@@ -101,10 +111,10 @@ class _Page2State extends State<Page2> {
                                     ),
                                   ),
                                 ),
-                                const Center(
+                                Center(
                                   child: ListTile(
                                     title: Text(
-                                      "Willie's Mosaic Profile",
+                                      "${user.getName()}'s Mosaic Profile",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 24,
@@ -181,7 +191,7 @@ class _Page2State extends State<Page2> {
                           ),
                           Center(
                             child: Text(
-                              'Mosiac Mastery: $_randomValue%',
+                              'Mosiac Mastery: ${stats['mastery']}%',
                               style: const TextStyle(
                                   decorationColor: Colors.white,
                                   fontSize: 36,
@@ -207,7 +217,7 @@ class _Page2State extends State<Page2> {
                                   ),
                                   pointers: <GaugePointer>[
                                     RangePointer(
-                                      value: _randomValue.toDouble(),
+                                      value: stats['mastery']! / 100,
                                       cornerStyle: CornerStyle.bothCurve,
                                       width: 0.25,
                                       color: Colors.blue[100],
@@ -215,7 +225,7 @@ class _Page2State extends State<Page2> {
                                     ),
                                     NeedlePointer(
                                       // Add this
-                                      value: _randomValue.toDouble(),
+                                      value: stats['mastery']! / 100,
                                       needleLength: 0.6,
                                       lengthUnit: GaugeSizeUnit.factor,
                                       needleColor: Colors.black,

@@ -86,6 +86,13 @@ def get_leaderboard(user_id):
 
     return jsonify(outlist)
 
+@app.route("/getnumposts/<int:user_id>")
+def getnumposts(user_id):
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM Posts WHERE UserID=?", (user_id,))
+    posts = cur.fetchall()
+    return jsonify({"numposts": len(posts)})
 
 @app.route("/feed")
 def feed():
