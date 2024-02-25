@@ -16,20 +16,6 @@ class _Page4State extends State<Page4> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    _tabController?.addListener(_handleTabSelection);
-  }
-
-  void _handleTabSelection() {
-    if (_tabController!.indexIsChanging) {
-      switch (_tabController?.index) {
-        case 0:
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-          break;
-        case 1:
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupPage()));
-          break;
-      }
-    }
   }
 
   @override
