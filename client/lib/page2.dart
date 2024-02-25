@@ -42,8 +42,9 @@ class _Page2State extends State<Page2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: const Text('Profile'),
       ),
+<<<<<<< HEAD
       body: FutureBuilder<Map<String, int>>(
         future: statsFuture,
         builder: (context, snapshot) {
@@ -135,6 +136,28 @@ class _Page2State extends State<Page2> {
                             ),
                           ),
                         ],
+=======
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Card(
+            color: Colors.transparent, // change the color as needed
+            child: Stack(
+              children: <Widget>[
+                _buildGradient(),
+                const Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.all(8.0), // adjust the padding as needed
+                      child: Align(
+                        alignment: Alignment.center, // adjust the alignment as needed
+                        child: CircleAvatar(
+                          radius: 100, // adjust the size of the image
+                          backgroundImage: AssetImage('assets/images/jim.png'), // replace with your image
+                        ),
+>>>>>>> cf15c4c670f9afd919ac805c2527f039dde7ee34
                       ),
                     ],
                   ),
