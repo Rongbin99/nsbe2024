@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:gallery_saver/gallery_saver.dart';
+import 'camera.dart';
 
 class Page3 extends StatelessWidget {
   const Page3({super.key});
@@ -87,9 +89,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         setState(() {
                           imagePath = image.path;
                         });
+                        GallerySaver.saveImage(imagePath);
                       } catch (e) {
                         print(e);
                       }
+                      Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Camera()));
                     },
                     child: const Text("Take Photo",
                     style: TextStyle(fontSize: 20, color: Colors.white),
@@ -111,6 +116,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       setState(() {
                         imagePath = pickedFile.path;
                       });
+                      Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Camera()));
                     }
                   },
                   child: const Text("Pick Image from Gallery",
@@ -137,4 +144,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
+
+getPath() {
+  return _MyHomePageState().imagePath;
 }
