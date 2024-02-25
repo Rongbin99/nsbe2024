@@ -1,9 +1,34 @@
 // main.dart
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:http/http.dart' as http;
+import 'package:image_collage/image_collage.dart' as imcollage;
 import 'page1.dart';
 import 'page2.dart';
 import 'page3.dart';
+
+final client = http.Client();
+
+class Post {
+  final String name;
+  final List<imcollage.Img> images;
+
+  const Post({required this.name, required this.images});
+
+  factory Post.fromJson(Map<String, dynamic> raw) {
+    List<imcollage.Img> images = [];
+    for (final image in raw["images"]!) {
+      images.add(imcollage.Img(image: "http://127.0.0.1:5000/images/${image}"));
+    }
+    return Post(
+      name: raw["name"]!,
+      images: images,
+    );
+  }
+}
+
 void main() {
   runApp(const MyApp());
 }
@@ -68,29 +93,69 @@ class MyApp extends StatelessWidget {
           ),
         ),
         body: const Center(
-          child: ParallaxBackground(),
+          child: Timeline(),
         ),
       ),
     );
   }
 }
 
-class ParallaxBackground extends StatelessWidget {
-  const ParallaxBackground({super.key});
+class Timeline extends StatefulWidget {
+  const Timeline({Key? key}) : super(key: key);
+
+  @override
+  State<Timeline> createState() => _TimelineState();
+}
+
+class _TimelineState extends State<Timeline> {
+  List<Post> posts = [];
+  Future<List<Post>>? _fut;
+
+  Future<List<Post>> _getResults() async {
+    http.Response res = await client.get(
+        Uri(scheme: "http", host: "127.0.0.1", port: 5000, path: "/posts"));
+    if (res.statusCode != 200) throw "netfail: ${res.statusCode}";
+    return jsonDecode(res.body)
+        .cast<String>()
+        .map(Post.fromJson)
+        .toList()
+        .cast<Post>();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fut = _getResults();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          for (final location in locations)
-            LocationListItem(
-              imageUrl: location.imageUrl,
-              name: location.name,
-              country: location.place,
+    return FutureBuilder(
+      future: _fut,
+      initialData: const <Post>[],
+      builder: (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
+        if (snapshot.hasData) {
+          var posts = snapshot.data!;
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                for (final post in posts)
+                  AspectRatio(
+                      aspectRatio: 1.0 / 1.0,
+                      child: imcollage.ImageCollage(
+                        images: post.images,
+                      )),
+              ],
             ),
-        ],
-      ),
+          );
+        } else if (snapshot.hasError) {
+          print(snapshot.error);
+          print(snapshot.stackTrace);
+          return Text(snapshot.error.toString());
+        } else {
+          return const Text("Loading");
+        }
+      },
     );
   }
 }
@@ -127,7 +192,6 @@ class LocationListItem extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _buildParallaxBackground(BuildContext context) {
     return Flow(
@@ -197,7 +261,6 @@ class ParallaxFlowDelegate extends FlowDelegate {
     required this.listItemContext,
     required this.backgroundImageKey,
   }) : super(repaint: scrollable.position);
-
 
   final ScrollableState scrollable;
   final BuildContext listItemContext;
@@ -378,47 +441,4 @@ class Location {
   final String imageUrl;
 }
 
-const urlPrefix =
-    '/assets/images/';
-const locations = [
-  Location(
-    name: 'CN Tower',
-    place: 'Canada',
-    imageUrl: '$urlPrefix/01-cn-tower.jpg',
-  ),
-  Location(
-    name: 'Gardens By The Bay',
-    place: 'Singapore',
-    imageUrl: '$urlPrefix/02-singapore.jpg',
-  ),
-  Location(
-    name: 'Machu Picchu',
-    place: 'Peru',
-    imageUrl: '$urlPrefix/03-machu-picchu.jpg',
-  ),
-  Location(
-    name: 'Vitznau',
-    place: 'Switzerland',
-    imageUrl: '$urlPrefix/04-vitznau.jpg',
-  ),
-  Location(
-    name: 'Bali',
-    place: 'Indonesia',
-    imageUrl: '$urlPrefix/05-bali.jpg',
-  ),
-  Location(
-    name: 'Mexico City',
-    place: 'Mexico',
-    imageUrl: '$urlPrefix/06-mexico-city.jpg',
-  ),
-  Location(
-    name: 'Cairo',
-    place: 'Egypt',
-    imageUrl: '$urlPrefix/07-cairo.jpg',
-  ),
-  Location(
-    name: 'example',
-    place: 'example',
-    imageUrl: '$urlPrefix/08-example.jpg',
-  ),
-];        
+const urlPrefix = '/assets/images/';
