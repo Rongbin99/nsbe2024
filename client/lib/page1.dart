@@ -12,7 +12,7 @@ class Page1 extends StatefulWidget {
 
 class _Page1State extends State<Page1> {
   GoogleMapController? mapController;
-
+  bool isMapLoading = true;
   final LatLng _center = const LatLng(43.66109092011767, -79.3948663993955);
   Future<BitmapDescriptor>? customIconFuture;
 
@@ -35,12 +35,14 @@ class _Page1State extends State<Page1> {
 Future<String> _loadMapStyle() async {
   return await rootBundle.loadString('assets/map_style.json');
 }
-void _onMapCreated(GoogleMapController controller) {
-  mapController = controller;
-  _loadMapStyle().then((style) {
+void _onMapCreated(GoogleMapController controller) async {
+    mapController = controller;
+    String style = await _loadMapStyle();
     mapController?.setMapStyle(style);
-  });
-}
+    setState(() {
+      isMapLoading = false;
+    });
+  }
 
   void _onMarkerTapped(MarkerId markerId, String assetName) {
     showDialog(
@@ -78,47 +80,55 @@ void _onMapCreated(GoogleMapController controller) {
     );
   }
 
-  @override
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Memories'),
       ),
-      body: FutureBuilder<BitmapDescriptor>(
-        future: customIconFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return GoogleMap(
-              onMapCreated: _onMapCreated,
-              initialCameraPosition: CameraPosition(
-                target: _center,
-                zoom: 11.0,
-              ),
-              markers: {
-                Marker(
-                  markerId: MarkerId('UofT'),
-                  position: LatLng(43.66069590096232, -79.3964813015131),
-                  onTap: () => _onMarkerTapped(
-                      MarkerId('UofT'), 'assets/images/jim.png'),
-                ),
-                Marker(
-                  markerId: MarkerId('Evan House'),
-                  position: LatLng(43.81482894945967, -79.32526497341495),
-                  onTap: () => _onMarkerTapped(
-                      MarkerId('Evan House'), 'assets/images/jim.png'),
-                ),
-                Marker(
-                  markerId: MarkerId('The Lew'),
-                  position: LatLng(43.471549822286526, -80.54269759991469),
-                  onTap: () => _onMarkerTapped(
-                      MarkerId('The Lew'), 'assets/images/jim.png'),
-                ),
-              },
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
+      body: Stack(
+        children: [
+          FutureBuilder<BitmapDescriptor>(
+            future: customIconFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return GoogleMap(
+                  onMapCreated: _onMapCreated,
+                  initialCameraPosition: CameraPosition(
+                    target: _center,
+                    zoom: 11.0,
+                  ),
+                  markers: {
+                    Marker(
+                      markerId: MarkerId('UofT'),
+                      position: LatLng(43.66069590096232, -79.3964813015131),
+                      onTap: () => _onMarkerTapped(
+                          MarkerId('UofT'), 'assets/images/jim.png'),
+                    ),
+                    Marker(
+                      markerId: MarkerId('Evan House'),
+                      position: LatLng(43.81482894945967, -79.32526497341495),
+                      onTap: () => _onMarkerTapped(
+                          MarkerId('Evan House'), 'assets/images/jim.png'),
+                    ),
+                    Marker(
+                      markerId: MarkerId('The Lew'),
+                      position: LatLng(43.471549822286526, -80.54269759991469),
+                      onTap: () => _onMarkerTapped(
+                          MarkerId('The Lew'), 'assets/images/jim.png'),
+                    ),
+                  },
+                );
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
+          if (isMapLoading)
+            Center(
+              child: CircularProgressIndicator(),
+            ),
+        ],
       ),
     );
   }
