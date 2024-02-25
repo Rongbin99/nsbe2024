@@ -62,6 +62,15 @@ class MyApp extends StatelessWidget {
                   color: Colors.blue,
                 ),
               ),
+               Builder(
+                builder: (context) =>
+              ListTile(
+                title: const Text('Home'),
+                onTap: () {
+                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+                },
+              ),),
               Builder(
                 builder: (context) => 
               ListTile(

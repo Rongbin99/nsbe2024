@@ -129,7 +129,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
-<<<<<<< HEAD
   file_selector_linux:
     dependency: transitive
     description:
@@ -162,7 +161,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.9.3+1"
-=======
   fixnum:
     dependency: transitive
     description:
@@ -171,7 +169,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
->>>>>>> 8e0a26c45027d92cc374f4ca569e8053821aa6a8
   flutter:
     dependency: "direct main"
     description: flutter
@@ -316,11 +313,7 @@ packages:
     source: hosted
     version: "0.15.4"
   http:
-<<<<<<< HEAD
-    dependency: transitive
-=======
     dependency: "direct main"
->>>>>>> 8e0a26c45027d92cc374f4ca569e8053821aa6a8
     description:
       name: http
       sha256: "761a297c042deedc1ffbb156d6e2af13886bb305c2a343a4d972504cd67dd938"
@@ -335,7 +328,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
-<<<<<<< HEAD
+  image_collage:
+    dependency: "direct main"
+    description:
+      name: image_collage
+      sha256: "8ca7e5b6beb50c164ee16efe7a7838a8f3c0a0127738a5aa8db1ce21ad0ee891"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
   image_picker:
     dependency: "direct main"
     description:
@@ -400,16 +400,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
-=======
-  image_collage:
-    dependency: "direct main"
-    description:
-      name: image_collage
-      sha256: "8ca7e5b6beb50c164ee16efe7a7838a8f3c0a0127738a5aa8db1ce21ad0ee891"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.4"
->>>>>>> 8e0a26c45027d92cc374f4ca569e8053821aa6a8
   js:
     dependency: transitive
     description:
