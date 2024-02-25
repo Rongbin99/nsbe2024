@@ -7,6 +7,7 @@ import 'page2.dart';
 import 'page3.dart';
 import 'page4.dart';
 import 'page5.dart';
+import 'page6.dart';
 import 'user_lib.dart' as user;
 
 final client = http.Client();
@@ -96,6 +97,15 @@ class _MyApp extends State<MyApp> {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
                 },
               ),),
+              Builder(
+                builder: (context) =>
+              ListTile(
+                title: const Text('geoTemp'),
+                onTap: () {
+                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Page6()));
+                },
+              ),),
               (user.getUserID() != -1) ?
                 Builder(
                   builder: (context) => 
@@ -117,6 +127,7 @@ class _MyApp extends State<MyApp> {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => Page2()));
                   }
                 ),) :
+        
                 Container(),
               (user.getUserID() != -1) ?
                 Builder(
@@ -128,6 +139,7 @@ class _MyApp extends State<MyApp> {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => Page5()));
                   },
                 ),) :
+                
                 Container(),
               (user.getUserID() != -1) ?
                 Builder(
@@ -151,6 +163,7 @@ class _MyApp extends State<MyApp> {
                     setState(() {});
                   },
                 ),) :
+                
                 Builder(
                   builder: (context) =>
                 ListTile(
@@ -160,6 +173,7 @@ class _MyApp extends State<MyApp> {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => Page4())).then((value) {
                       setState(() {});
                     });
+                    
                   },
                 ),),
             ],
