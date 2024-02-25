@@ -64,7 +64,7 @@ void _onMarkerTapped() {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 1'),
+        title: Text('Memories'),
       ),
       body: FutureBuilder<BitmapDescriptor>(
         future: customIconFuture,

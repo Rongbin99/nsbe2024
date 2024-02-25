@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'page1.dart';
 import 'page2.dart';
-
+import 'page3.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -33,13 +33,14 @@ class MyApp extends StatelessWidget {
               const DrawerHeader(
                 child: Text('GoMommy'),
                 decoration: BoxDecoration(
+
                   color: Colors.blue,
                 ),
               ),
               Builder(
                 builder: (context) => 
               ListTile(
-                title: const Text('Page 1'),
+                title: const Text('Memories'),
                 onTap: () {
                   Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Page1()));
@@ -48,10 +49,19 @@ class MyApp extends StatelessWidget {
               Builder(
                 builder: (context) =>
               ListTile(
-                title: const Text('Page 2'),
+                title: const Text('Profile'),
                 onTap: () {
                   Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Page2()));
+                },
+              ),),
+              Builder(
+                builder: (context) =>
+              ListTile(
+                title: const Text('Camera'),
+                onTap: () {
+                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Page3()));
                 },
               ),),
             ],
