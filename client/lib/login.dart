@@ -3,6 +3,7 @@ import 'signup.dart';
 import 'page2.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'user_lib.dart' as user;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -104,6 +105,9 @@ class _LoginPageState extends State<LoginPage> {
             var success = jsonDecode(response.body)["status"];
 
             if (success == 'success') {
+              user.setName(username);
+              user.setUserID(jsonDecode(response.body)["UserID"]);
+
               Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
               Navigator.push(context, MaterialPageRoute(builder: (context) => Page2()));
             } else {
