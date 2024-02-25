@@ -16,11 +16,11 @@ To encourage the user to go outside, each time the user travels to the location 
 
 ## 🛠️ How we built it ⚙️
 
-**Front-End Development:** We used Flutter and programmed in Dart to build the front-end and user interface experience that the user interacts with. We utilized numerous APIs, such as Google Maps, to provide a seemless end-user experience.
+**Front-End Development:** We used Flutter and programmed in Dart to build the front-end and user interface experience that the user interacts with. We utilized numerous APIs, such as Google Maps, to provide a seamless end-user experience.
 
-This included a log-in page, user profile, local ranking leaderboard, and a gallery view of all the local landmarks that users can take pictures at to earn points.
+This included a log-in page, user profile, local ranking leaderboard, and a gallery view of all the local landmarks that users can take pictures to earn points.
 
-**Back-End Development:** We used Python to host our SQLite database and server. This server was responsible for storing all the user registration information and verifiying the identity of the user through the login process.
+**Back-End Development:** We used Python to host our SQLite database and server. This server was responsible for storing all the user registration information and verifying the identity of the user through the login process. Utilizing OpenCV and PyTorch to verify the location of images.
 
 ## 🚧 Challenges we ran into 🚨
 
@@ -35,7 +35,7 @@ This included a log-in page, user profile, local ranking leaderboard, and a gall
 Over the short, and tiresome, span of 24 hours, we are proud to have achieved the following:
 
 * [X] Successfully program a functioning application that displays the user's outdoor statistics and contributions to the community, AKA M-Score and Mosiac Mastery.
-* [X] Have a functioning integrated Google Maps within the app and a working picture taker via the camera / gallery.
+* [X] Have a functioning integrated Google Maps within the app and a working picture taker via the camera/gallery.
 * [X] Seemless home gallery with posts from various community members.
 * [X] Develop an intuitive application with Flutter that includes login, user profile, and local wonders.
 * [X] Successfully linked the SQLite server and all the back-end routing.
