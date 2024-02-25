@@ -22,7 +22,6 @@ dependencies:
   path: ^1.8.0
   image_picker: ^0.8.4+4 
   syncfusion_flutter_gauges: ^24.2.7
-  gallery_saver: ^2.3.2
 
 
 dev_dependencies:
@@ -38,6 +37,3 @@ flutter:
     - assets/background.png
     - assets/images/).png
     - assets/map_style.json
-    - assets/pfp.jpg
-    - assets/logo-01.png
-    - assets/logo-01.gif
