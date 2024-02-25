@@ -9,6 +9,32 @@ app = Flask(__name__)
 def home():
     return "Hello, World!"
 
+def get_db():
+    if 'db' not in g:
+        g.db = sqlite3.connect('data.db')
+    return g.db
+
+app.config["DATABASE"] = "./data.db"
+
+@app.route('/users/<int:user_id>')
+def user_profile(user_id):
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM Users WHERE UserID=?", (user_id,))
+    user = cur.fetchone()
+    if user is None:
+        return jsonify({"error": "User not found"}), 404
+    else:
+        return jsonify({"UserID": user[0], "Name": user[1], "Score": user[2]})
+    
+@app.route('/leaderboard')
+def get_leaderboard():
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM Users ORDER BY Score DESC")
+    users = cur.fetchall()
+    return jsonify(users)
+
 
 @app.route("/feed")
 def feed():
@@ -56,6 +82,12 @@ def newimage():
 
     return ":D"
 
+@app.teardown_appcontext
+def close_db(e=None):
+    db = g.pop('db', None)
+
+    if db is not None:
+        db.close()
 
 if __name__ == "__main__":
     app.run(debug=True)
