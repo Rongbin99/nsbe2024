@@ -104,7 +104,7 @@ class _Page2State extends State<Page2> {
                                 const Center(
                                   child: ListTile(
                                     title: Text(
-                                      "Willie's GoMommy Profile",
+                                      "Willie's Mosaic Profile",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 24,
@@ -113,7 +113,7 @@ class _Page2State extends State<Page2> {
                                       textAlign: TextAlign.center,
                                     ),
                                     subtitle: Text(
-                                      'I prefer GoDaddy, but I also love GoMommy.',
+                                      'Toronto, ON, Canada',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,
@@ -131,7 +131,7 @@ class _Page2State extends State<Page2> {
                                       Column(
                                         children: <Widget>[
                                           const Text(
-                                            'Total Images Shared',
+                                            'Total Mosaics Shared',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
@@ -150,7 +150,7 @@ class _Page2State extends State<Page2> {
                                       Column(
                                         children: <Widget>[
                                           const Text(
-                                            'Score',
+                                            'M-Score',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
@@ -181,7 +181,7 @@ class _Page2State extends State<Page2> {
                           ),
                           Center(
                             child: Text(
-                              'GoMommy XP: $_randomValue%',
+                              'Mosiac Mastery: $_randomValue%',
                               style: const TextStyle(
                                   decorationColor: Colors.white,
                                   fontSize: 36,

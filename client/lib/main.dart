@@ -59,7 +59,7 @@ class _MyApp extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    const title = 'GoMommy';
+    const title = 'Mosaic';
 
     return MaterialApp(
       title: title,
@@ -97,7 +97,7 @@ class _MyApp extends State<MyApp> {
               Builder(
                 builder: (context) => 
               ListTile(
-                title: const Text('Memories'),
+                title: const Text('Mosaics'),
                 onTap: () {
                   Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Page1()));

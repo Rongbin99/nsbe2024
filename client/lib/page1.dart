@@ -84,7 +84,7 @@ void _onMapCreated(GoogleMapController controller) async {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Memories'),
+        title: Text('Mosaics'),
       ),
       body: Stack(
         children: [

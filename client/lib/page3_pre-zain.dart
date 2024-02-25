@@ -96,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const Camera()));
                     },
-                    child: const Text("Take Photo",
+                    child: const Text("Take A Mosaic",
                     style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                     style: ElevatedButton.styleFrom(
