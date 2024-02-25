@@ -7,6 +7,8 @@ import 'package:image_collage/image_collage.dart' as imcollage;
 import 'page1.dart';
 import 'page2.dart';
 import 'page3.dart';
+import 'page4.dart';
+//import 'page5.dart';
 
 final client = http.Client();
 
@@ -72,7 +74,7 @@ class _MyApp extends State<MyApp> {
                   color: Colors.blue,
                 ),
               ),
-               Builder(
+              Builder(
                 builder: (context) =>
               ListTile(
                 title: const Text('Home'),
@@ -102,10 +104,28 @@ class _MyApp extends State<MyApp> {
               Builder(
                 builder: (context) =>
               ListTile(
+                title: const Text('Leaderboard'),
+                onTap: () {
+                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Page4()));
+                },
+              ),),
+              Builder(
+                builder: (context) =>
+              ListTile(
                 title: const Text('Camera'),
                 onTap: () {
                   Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Page3()));
+                },
+              ),),
+              Builder(
+                builder: (context) =>
+              ListTile(
+                title: const Text('Login'),
+                onTap: () {
+                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Page4()));
                 },
               ),),
             ],
