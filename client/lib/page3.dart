@@ -71,42 +71,64 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 50,
               ),
               Container(
-                width: 200,
-                height: 200,
+                width: 500,
+                height: 500,
                 child: AspectRatio(
                   aspectRatio: controller!.value.aspectRatio,
                   child: CameraPreview(controller!),
                 ),
               ),
-              TextButton(
+              Container(
+                margin: const EdgeInsets.only(top: 50),
+                child: ElevatedButton(
+                    onPressed: () async {
+                      try {
+                        final image = await controller!.takePicture();
+                        setState(() {
+                          imagePath = image.path;
+                        });
+                      } catch (e) {
+                        print(e);
+                      }
+                    },
+                    child: const Text("Take Photo",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      backgroundColor: Colors.blue,
+                      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20), 
+                    )
+                  ),
+                ),
+              Container(
+                margin: const EdgeInsets.only(top: 50),
+                child: ElevatedButton(
                   onPressed: () async {
-                    try {
-                      final image = await controller!.takePicture();
+                    final picker = ImagePicker();
+                    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+                    if (pickedFile != null) {
                       setState(() {
-                        imagePath = image.path;
+                        imagePath = pickedFile.path;
                       });
-                    } catch (e) {
-                      print(e);
                     }
                   },
-                  child: const Text("Take Photo")),
-              TextButton(
-                onPressed: () async {
-                  final picker = ImagePicker();
-                  final pickedFile = await picker.getImage(source: ImageSource.gallery);
-                  if (pickedFile != null) {
-                    setState(() {
-                      imagePath = pickedFile.path;
-                    });
-                  }
-                },
-                child: const Text("Pick Image from Gallery"),
+                  child: const Text("Pick Image from Gallery",
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    backgroundColor: Colors.blue,
+                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20), 
+                  )
+                ),
               ),
               if (imagePath != "")
                 Container(
                     width: 300,
                     height: 300,
                     child: Image.file(
+                      
                       File(imagePath),
                     ))
             ],
