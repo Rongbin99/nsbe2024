@@ -3,6 +3,14 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  file_selector_windows
+=======
+  geolocator_windows
+>>>>>>> 8e0a26c45027d92cc374f4ca569e8053821aa6a8
+>>>>>>> 705ee2abd49e9a9f8f111159d097a2eab30e77b4
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
