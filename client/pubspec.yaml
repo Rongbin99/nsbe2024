@@ -36,8 +36,5 @@ flutter:
     - assets/images/01-cn-tower.jpg
     - assets/background.png
     - assets/images/).png
-<<<<<<< HEAD
     - assets/map_style.json
-=======
     - assets/pfp.jpg
->>>>>>> 69afb419151ab2f0d9b8a14139ef14306cca6cdc
