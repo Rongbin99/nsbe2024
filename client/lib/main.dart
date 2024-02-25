@@ -68,10 +68,12 @@ class _MyApp extends State<MyApp> {
             padding: EdgeInsets.zero,
             children: <Widget>[
               const DrawerHeader(
-                child: Text('GoMommy'),
+                child: null,
                 decoration: BoxDecoration(
-
-                  color: Colors.blue,
+                  image: DecorationImage(
+                    image: AssetImage('background.png'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Builder(
