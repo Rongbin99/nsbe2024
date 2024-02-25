@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'user_lib.dart' as user;
 import 'page3_lib.dart' as page3;
+import 'main.dart';
 
 class Page6 extends StatefulWidget {
   @override
@@ -17,7 +18,7 @@ class _Page6State extends State<Page6> {
   GoogleMapController? mapController; 
   final TextEditingController _searchController = TextEditingController();
   Position? _currentPosition;
-  LatLng _initialcameraposition = LatLng(17.6078, 8.0817);
+  LatLng _initialcameraposition = LatLng(43.66080572851769, -79.39648945350376);
 
   @override
   void initState() {
@@ -105,8 +106,18 @@ class _Page6State extends State<Page6> {
             height: 10.0,
           ),
           ElevatedButton(
-            onPressed: _confirmAddress,
-            child: Text('Confirm'),
+            onPressed: () {
+              _confirmAddress();
+              Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const MyApp()));
+            },
+            style: ElevatedButton.styleFrom(
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+            backgroundColor: Colors.blue[700],
+          ),
+            child: const Text('Confirm',
+            style: TextStyle(fontSize: 20, color: Colors.white),),
           ),
           Expanded(
             child: GoogleMap(
