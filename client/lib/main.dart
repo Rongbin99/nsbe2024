@@ -17,7 +17,13 @@ class Post {
   String imagepath;
 
   Post({required this.username, required this.id, required this.desc, required this.imagepath});
-
+  
+  static Future<Post> createFromJson(List<dynamic> raw) async {
+    Post post = Post(username: "LASAGNA", id: raw[1], desc: raw[2], imagepath: 'http://127.0.0.1:5000/static/testimages/${raw[3]}');
+    await post.updateFromResponse(raw);
+    return post;
+  }
+  
   factory Post.fromJson(List<dynamic> raw) {
     Post post = Post(username: "LASAGNA", id: raw[1], desc: raw[2], imagepath: 'http://127.0.0.1:5000/static/testimages/${raw[3]}');
 
@@ -26,7 +32,7 @@ class Post {
     return post;
   }
 
-  void updateFromResponse(raw) async {
+  Future<void> updateFromResponse(raw) async {
     int user = raw[0];
     final responseUser = await http.get(Uri.parse('http://127.0.0.1:5000/users/$user'));
     username = jsonDecode(responseUser.body)["Name"];
@@ -159,9 +165,13 @@ class _TimelineState extends State<Timeline> {
     http.Response res = await client.get(
         Uri(scheme: "http", host: "127.0.0.1", port: 5000, path: "/feed"));
     if (res.statusCode != 200) throw "netfail: ${res.statusCode}";
-    return (jsonDecode(res.body) as List)
-        .map((item) => Post.fromJson(item as List<dynamic>))
-        .toList();
+    
+    List<Post> posts = [];
+    for (var item in jsonDecode(res.body)) {
+      var post = await Post.createFromJson(item as List<dynamic>);
+      posts.add(post);
+    }
+    return posts;
   }
 
   @override

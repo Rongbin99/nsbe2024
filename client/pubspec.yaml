@@ -15,13 +15,14 @@ dependencies:
   location: ^4.3.0  # Add this line
   flutter_image_compress: ^1.1.0
   geolocator: ^11.0.0
-  http: ^1.2.1
+  http: ^0.13.6
   image_collage: ^0.0.4
   camera: ^0.9.4+18
   path_provider: ^2.0.9
   path: ^1.8.0
   image_picker: ^0.8.4+4 
   syncfusion_flutter_gauges: ^24.2.7
+  gallery_saver: ^2.3.2
 
 
 dev_dependencies:
