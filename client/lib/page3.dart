@@ -5,20 +5,23 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
 class Page3 extends StatelessWidget {
+  const Page3({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Camera',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Camera'),
+      home: const MyHomePage(title: 'Camera'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
   final String title;
 
   @override
@@ -64,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               Container(
@@ -86,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       print(e);
                     }
                   },
-                  child: Text("Take Photo")),
+                  child: const Text("Take Photo")),
               TextButton(
                 onPressed: () async {
                   final picker = ImagePicker();
@@ -97,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     });
                   }
                 },
-                child: Text("Pick Image from Gallery"),
+                child: const Text("Pick Image from Gallery"),
               ),
               if (imagePath != "")
                 Container(
