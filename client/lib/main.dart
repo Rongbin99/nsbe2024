@@ -74,7 +74,7 @@ class _MyApp extends State<MyApp> {
                   color: Colors.blue,
                 ),
               ),
-               Builder(
+              Builder(
                 builder: (context) =>
               ListTile(
                 title: const Text('Home'),
