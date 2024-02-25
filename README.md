@@ -1,18 +1,14 @@
-# NSBE 2024 Submission: GoMommy
-
-NSBEHacks 2024 Submission. Rongbin Gu, Evan Li, Luthira Abeykoon, Zain Azam
-
 ## 💡 Inspiration 🌟
 
-Have you ever been bored out of your mind and wanted to do something? Have you ever found yourself scrolling on Instagram or TikTok and suddenly 4 hours have passed by in the blink of an eye? Have you ever wished that you were more productive? If so, GoMommy is here!
+Have you ever found yourself scrolling on Instagram or TikTok and suddenly 4 hours have passed by in the blink of an eye? Have you wished you spent more time outside, discovering your community? Mosaic can help you with both.
 
-Inspired by this common dilemma that many youth face in today's world, GoMommy is an intuitive application that detects when it believes you have entered the "doom scrolling" state and encourages you to go outside and do something.
+Inspired by this common dilemma that many youth face in today's world, Mosaic is an intuitive social media application that discourages the "doom scrolling" state and encourages you to go outside and connect .
 
 ## 😃 What it does 😃
 
-Once GoMommy detects that you have entered the "doom scrolling" state, the program will automatically recommend location suggestions based on the location tags found in the social media content that has been scrolled. We have also taken into consideration the location of the user and the social media content and will give similar location suggestions that are more local to the user.
+Mosaic lets you share where you've been and encourages others nearby to match your photo at the same location. Not only does it share the classic social media appeal of sharing your adventures, it heavily emphasizes having others go on your adventures too.
 
-To encourage the user to go outside, each time the user travels to the location and posts an image taken from that location to the app, the user will be awarded points which will go towards their total M-Score and ranking on the local leaderboard. With this competition aspect, this will incentive the user to participate and compete with friends and family.
+To encourage the user to go outside, each time the user travels to the location and posts an image taken from that location to the app, the user will be awarded points which will go towards their total M-Score and ranking on the local leaderboard. With this competition aspect, this will incentivize the user to participate and compete with friends, family, and community members. The app also promotes local culture by shining spotlights on lesser-known cultural locations. For lesser-privileged communities in urban areas, this can greatly strengthen the bonds between community members and will hopefully foster an environment of mutual support.
 
 ## 🛠️ How we built it ⚙️
 
@@ -20,53 +16,50 @@ To encourage the user to go outside, each time the user travels to the location 
 
 This included a log-in page, user profile, local ranking leaderboard, and a gallery view of all the local landmarks that users can take pictures to earn points.
 
-**Back-End Development:** We used Python to host our SQLite database and server. This server was responsible for storing all the user registration information and verifying the identity of the user through the login process.
+**Back-End Development:** We used Python to host our SQLite database and server. This server was responsible for storing all the user registration information and verifying the identity of the user through the login process. It also kept track of all new posts and the leaderboard.
 
 ## 🚧 Challenges we ran into 🚨
 
-- Setting up the backend for the login portal.
+- Setting up the backend for the login portal - many of us didn't have much backend experience.
 - Setting up the Flutter SDK and various dependencies.
-- Stylizing the UI to look aesthetically pleasing.
-- Gaining familiarity with Flutter and Dart.
+- Gaining familiarity with Flutter and Dart - it was our first time using them!
 - Integrating Google Maps into our application.
 
 ## 🎉 Accomplishes that we're proud of 🎉
 
 Over the short, and tiresome, span of 24 hours, we are proud to have achieved the following:
 
-* [X] Successfully program a functioning application that displays the user's outdoor statistics and contributions to the community, AKA M-Score and Mosiac Mastery.
-* [X] Have a functioning integrated Google Maps within the app and a working picture taker via the camera/gallery.
-* [X] Seamless home gallery with posts from various community members.
-* [X] Develop an intuitive application with Flutter that includes login, user profile, and local wonders.
-* [X] Successfully linked the SQLite server and all the back-end routing.
-* [X] Consume a total of 0 energy drinks despite the urge.
+* Successfully program a functioning application that displays the user's outdoor statistics and contributions to the community.
+* Integrated Google Maps within the app and a working picture taker/uploader via the camera/gallery.
+* Created a seamless home gallery with posts from various community members.
+* Developed an intuitive application with Flutter that includes logins and user profiles.
+* Successfully linked the SQLite server and all the back-end routing.
+* Consumed a total of 0 energy drinks despite the urge.
 
 ## 🤓 What we learned 🙌
 
 - How to program in [Dart](https://dart.dev/).
 - How to create an application with [Flutter](https://docs.flutter.dev/).
 - How to host and run an SQLite server in Python.
-- How to use [OpenCV](https://opencv.org/) in Python for an image similarity comparison AI.
 - How to set up and use a database.
 - How to create a login page and the back-end routing for it.
 - How to utilize and understand the [Google Maps API](https://developers.google.com/maps/documentation).
+- How to convert latitude and longitude measurements into kilometer proximity metrics.
 - How to separate independent `.dart` files and link them together.
 - How to efficiently resolve merge conflicts.
 
-## 👍How GoMommy helps 👌
+## 👍How Mosaic helps 👌
 
-**Encourages Outdoor Activities:** With GoMommy, youth are encouraged to stop "doom" scrolling (when someone scrolls endlessly, wasting a tremendous amount of time) and to go outdoors instead. By providing similar nearby location suggestions to the posts seen on their feed, adolescents are incentivized to physically visit these locations instead of viewing them through their screens.
+**Encourages Outdoor Activities:** With Mosaic, youth are encouraged to stop "doom" scrolling (when someone scrolls endlessly, wasting a tremendous amount of time) and to go outdoors instead. By providing similar nearby location suggestions to the posts seen on their feed, adolescents are incentivized to physically visit these locations instead of viewing them through their screens.
 
-**Promotes Mental Health:** Going and spending time outdoors has proven to improve people's mental health. Mental health is an important and often overlooked aspect of someone's well-being. With GoMommy, adolescents are encouraged to go outdoors and explore their urban environments.
+**Promotes Mental Health:** Going and spending time outdoors has proven to improve people's mental health. With Mosaic, adolescents are encouraged to go outdoors and explore their urban environments.
 
-**Building Community Bonds:** As GoMommy marks local checkpoint landmarks, there are opportunities for social interaction among users of the app. This allows for the possibility of social gatherings and activities, ultimately building community bonds and inclusivity.
+**Building Community Bonds:** As Mosaic marks local checkpoint landmarks, there are opportunities for social interaction among users of the app. This allows for the possibility of social gatherings and activities, ultimately building community bonds and inclusivity. While modern urban communities can sometimes be separated and cold, Mosaic hopes to bring the youth in these places together.
 
-***In Conclusion:*** GoMommy aims to promote the mental health of youth by encouraging them to go outdoors instead of "doom" scrolling on their phones. This opens up opportunities for social engagement and to strengthen community bonds.
+## ✨ What's next for Mosaic ✨
 
-## ✨ What's next for GoMommy ✨
+The next steps for Mosaic are to refine the current functionalities of our hack and to improve the quality of user experience. This will most likely require a migration to a different framework such as React.js - but it was fun to learn Flutter too.
 
-The next steps for GoMommy are to refine the current functionalities of our hack and to improve the quality of user experience. This will most likely require a migration to a better framework such as React.js.
+Additionally, we wish to expand our database to include more communities around Canada and the world, and to improve our scoring algorithms, most likely with more sophisticated AI models, to more effectively encourage participation.
 
-Additionally, we wish to expand our database to include more communities around Canada and the world. We also want to better improve our AI model to recognize whether or not the images are taken in the same area or not.
-
-Lastly, we want to deploy our server and application to mobile app stores to allow users to be able to use GoMommy and to put an end to their "doom scrolling."
+Lastly, we want to deploy our server and application to mobile app stores to allow users to be able to use Mosaic and to put an end to their "doom scrolling."
