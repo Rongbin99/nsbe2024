@@ -88,24 +88,28 @@ class _Page2State extends State<Page2> {
                                     child: CircleAvatar(
                                       radius: 100,
                                       backgroundImage:
-                                          AssetImage('/images/).png'),
+                                          AssetImage('pfp.jpg'),
                                     ),
                                   ),
                                 ),
-                                const ListTile(
-                                  title: Text(
-                                    'Profile',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
+                                const Center(
+                                  child: ListTile(
+                                    title: Text(
+                                      "Willie's GoMommy Profile",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
                                     ),
-                                  ),
-                                  subtitle: Text(
-                                    'Hi :)',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
+                                    subtitle: Text(
+                                      'I prefer GoDaddy, but I also love GoMommy.',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      ),
+                                      textAlign: TextAlign.center,
                                     ),
                                   ),
                                 ),
