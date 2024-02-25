@@ -231,9 +231,11 @@ class _Page2State extends State<Page2> {
                 ),
               ),
             );
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
+          }else {
+          return Center(
+            child: Image.asset('assets/logo-01.gif'),
+          );
+        }
         },
       ),
     );
