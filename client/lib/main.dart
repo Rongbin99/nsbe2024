@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
-import 'package:image_collage/image_collage.dart';
+import 'package:image_collage/image_collage.dart' as imcollage;
 import 'page1.dart';
 import 'page2.dart';
 import 'page3.dart';
@@ -13,14 +13,14 @@ final client = http.Client();
 
 class Post {
   final String name;
-  final List<Img> images;
+  final List<imcollage.Img> images;
 
   const Post({required this.name, required this.images});
 
   factory Post.fromJson(Map<String, dynamic> raw) {
-    List<Img> images = [];
+    List<imcollage.Img> images = [];
     for (final image in raw["images"]!) {
-      images.add(Img(image: "http://127.0.0.1:5000/images/${image}"));
+      images.add(imcollage.Img(image: "http://127.0.0.1:5000/images/${image}"));
     }
     return Post(
       name: raw["name"]!,
@@ -142,7 +142,7 @@ class _TimelineState extends State<Timeline> {
                 for (final post in posts)
                   AspectRatio(
                       aspectRatio: 1.0 / 1.0,
-                      child: ImageCollage(
+                      child: imcollage.ImageCollage(
                         images: post.images,
                       )),
               ],
