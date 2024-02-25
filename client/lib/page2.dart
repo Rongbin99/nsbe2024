@@ -24,7 +24,7 @@ class Page2 extends StatefulWidget {
 
 class _Page2State extends State<Page2> {
   Future<Map<String, int>>? statsFuture;
-  int _randomValue = Random().nextInt(101); // Define your random value here
+  final int _randomValue = Random().nextInt(101); // Define your random value here
 
   @override
   void initState() {
@@ -34,7 +34,7 @@ class _Page2State extends State<Page2> {
 
   Future<Map<String, int>> fetchStats() async {
     // Replace this with your actual backend call
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     return {
       'totalImagesShared': 10,
       'score': 85,
@@ -45,7 +45,8 @@ class _Page2State extends State<Page2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Text('Your Profile'),
+        centerTitle: true,
       ),
       body: FutureBuilder<Map<String, int>>(
         future: statsFuture,
@@ -54,13 +55,13 @@ class _Page2State extends State<Page2> {
             final stats = snapshot.data!;
             return SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0), 
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Column(
                     children: [
                       Card(
-                        color: Colors.transparent,
+                        color: Colors.transparent,                        
                         child: Stack(
                           children: <Widget>[
                             Positioned.fill(
