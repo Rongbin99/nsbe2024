@@ -20,7 +20,7 @@ To encourage the user to go outside, each time the user travels to the location 
 
 This included a log-in page, user profile, local ranking leaderboard, and a gallery view of all the local landmarks that users can take pictures to earn points.
 
-**Back-End Development:** We used Python to host our SQLite database and server. This server was responsible for storing all the user registration information and verifying the identity of the user through the login process. Utilizing OpenCV and PyTorch to verify the location of images.
+**Back-End Development:** We used Python to host our SQLite database and server. This server was responsible for storing all the user registration information and verifying the identity of the user through the login process.
 
 ## 🚧 Challenges we ran into 🚨
 
