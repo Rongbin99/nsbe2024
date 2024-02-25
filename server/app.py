@@ -6,6 +6,7 @@ from flask_cors import CORS
 import os
 import ai
 import cv2
+import uuid
 
 app = Flask(__name__)
 CORS(app)
@@ -94,48 +95,58 @@ def feed():
     posts = cur.fetchall()
     return jsonify(posts)
 
-
-@app.route("/upload", methods=['GET', 'POST'])
-def newpost():
-    
-    print("upload!")
-
-    iidd = request.args.get("id")
-    fname1 = f"static/testimages/{iidd}.jpg"
-    with open(fname1, "wb") as f:
-        f.write(request.data)
-
-    img1 = cv2.imread(fname1)
-
-    conn = sqlite3.connect("data/app.db")
-    cur = conn.cursor()
-    cur.execute(
-        "SELECT * FROM posts",
-    )
-    posts = cur.fetchall()
-
-    for (name, images) in posts:
-        for fname2 in images.split(';'):
-            if ai.match(img1, cv2.imread(fname2)):
-                print("match")
-                images += ';'
-                images += fname2
-                print(images)
-                conn.execute(
-                    "UPDATE posts SET images = ? WHERE id = ?",
-                    (images, name),
-                )
-                conn.commit()
-                break
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'image' in request.files:
+        file = request.files['image']
+        ext = file.filename.split(".")[-1]
+        name = uuid.uuid4().hex
+        file.save(f'static/testimages/{name}.{ext}')
+        return jsonify({"vidname": f"{name}.{ext}"}), 200
     else:
-        print("nomatch")
-        conn.execute(
-            "INSERT INTO posts VALUES (?, ?);",
-            (fname1, fname1),
-        )
-        conn.commit()
+        return 400
 
-    return ":)"
+# @app.route("/upload", methods=['GET', 'POST'])
+# def newpost():
+    
+#     print("upload!")
+
+#     iidd = request.args.get("id")
+#     fname1 = f"static/testimages/{iidd}.jpg"
+#     with open(fname1, "wb") as f:
+#         f.write(request.data)
+
+#     img1 = cv2.imread(fname1)
+
+#     conn = sqlite3.connect("data/app.db")
+#     cur = conn.cursor()
+#     cur.execute(
+#         "SELECT * FROM posts",
+#     )
+#     posts = cur.fetchall()
+
+#     for (name, images) in posts:
+#         for fname2 in images.split(';'):
+#             if ai.match(img1, cv2.imread(fname2)):
+#                 print("match")
+#                 images += ';'
+#                 images += fname2
+#                 print(images)
+#                 conn.execute(
+#                     "UPDATE posts SET images = ? WHERE id = ?",
+#                     (images, name),
+#                 )
+#                 conn.commit()
+#                 break
+#     else:
+#         print("nomatch")
+#         conn.execute(
+#             "INSERT INTO posts VALUES (?, ?);",
+#             (fname1, fname1),
+#         )
+#         conn.commit()
+
+#     return ":)"
 
 
 @app.teardown_appcontext
