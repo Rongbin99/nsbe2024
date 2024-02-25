@@ -63,7 +63,7 @@ def login(username, password):
     if user is None or user[5] != password:
         return jsonify({"status": "fail"})
     else:
-        return jsonify({"status": "success"})
+        return jsonify({"status": "success", "UserID": user[0]})
     
 @app.route('/leaderboard/<int:user_id>')
 def get_leaderboard(user_id):
