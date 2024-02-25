@@ -1,1 +1,4 @@
 client/pubspec.lock
+client/macos/Flutter/GeneratedPluginRegistrant.swift
+client/windows/flutter/generated_plugin_registrant.cc
+client/windows/flutter/generated_plugins.cmake
