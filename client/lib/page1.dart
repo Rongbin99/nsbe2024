@@ -32,46 +32,52 @@ class _Page1State extends State<Page1> {
     );
     return BitmapDescriptor.fromBytes(result);
   }
+Future<String> _loadMapStyle() async {
+  return await rootBundle.loadString('assets/map_style.json');
+}
+void _onMapCreated(GoogleMapController controller) {
+  mapController = controller;
+  _loadMapStyle().then((style) {
+    mapController?.setMapStyle(style);
+  });
+}
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
-void _onMarkerTapped(String assetName) {
-  showDialog(
-    context: context,
-    builder: (context) {
-      bool isImage = true;
-      return StatefulBuilder(
-        builder: (context, setState) {
-          return Dialog(
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  isImage = !isImage;
-                });
-              },
-              child: isImage
-                  ? Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: Image.asset(assetName),
-                    )
-                  : Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Text(
-                          'Your information here',
-                          style: TextStyle(fontSize: 24),
+  void _onMarkerTapped(MarkerId markerId, String assetName) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        bool isImage = true;
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Dialog(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isImage = !isImage;
+                  });
+                },
+                child: isImage
+                    ? Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Image.asset(assetName),
+                      )
+                    : Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            '${markerId.value}',
+                            style: TextStyle(fontSize: 24),
+                          ),
                         ),
                       ),
-                    ),
-            ),
-          );
-        },
-      );
-    },
-  );
-}
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,19 +95,23 @@ void _onMarkerTapped(String assetName) {
                 zoom: 11.0,
               ),
               markers: {
-                CustomMarker(
+                Marker(
                   markerId: MarkerId('UofT'),
                   position: LatLng(43.66069590096232, -79.3964813015131),
-                  onTap: () => _onMarkerTapped('assets/images/jim.png'),
-                  icon: snapshot.data ?? BitmapDescriptor.defaultMarker,
-                  assetName: 'assets/images/jim.png',
+                  onTap: () => _onMarkerTapped(
+                      MarkerId('UofT'), 'assets/images/jim.png'),
                 ),
-                CustomMarker(
+                Marker(
                   markerId: MarkerId('Evan House'),
                   position: LatLng(43.81482894945967, -79.32526497341495),
-                  onTap: () => _onMarkerTapped('assets/images/jim.png'),
-                  icon: snapshot.data ?? BitmapDescriptor.defaultMarker,
-                  assetName: 'assets/images/jim.png',
+                  onTap: () => _onMarkerTapped(
+                      MarkerId('Evan House'), 'assets/images/jim.png'),
+                ),
+                Marker(
+                  markerId: MarkerId('The Lew'),
+                  position: LatLng(43.471549822286526, -80.54269759991469),
+                  onTap: () => _onMarkerTapped(
+                      MarkerId('The Lew'), 'assets/images/jim.png'),
                 ),
               },
             );
