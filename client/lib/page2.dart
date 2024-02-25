@@ -44,7 +44,6 @@ class _Page2State extends State<Page2> {
       appBar: AppBar(
         title: const Text('Profile'),
       ),
-<<<<<<< HEAD
       body: FutureBuilder<Map<String, int>>(
         future: statsFuture,
         builder: (context, snapshot) {
@@ -62,8 +61,8 @@ class _Page2State extends State<Page2> {
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
                             child: Align(
                               alignment: Alignment.center,
                               child: CircleAvatar(
@@ -72,7 +71,7 @@ class _Page2State extends State<Page2> {
                               ),
                             ),
                           ),
-                          ListTile(
+                          const ListTile(
                             title: Text(
                               'Profile',
                               style: TextStyle(
@@ -96,7 +95,7 @@ class _Page2State extends State<Page2> {
                               children: <Widget>[
                                 Column(
                                   children: <Widget>[
-                                    Text(
+                                    const Text(
                                       'Total Images Shared',
                                       style: TextStyle(
                                         color: Colors.white,
@@ -105,7 +104,7 @@ class _Page2State extends State<Page2> {
                                     ),
                                     Text(
                                       '${stats['totalImagesShared']}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold,
@@ -115,7 +114,7 @@ class _Page2State extends State<Page2> {
                                 ),
                                 Column(
                                   children: <Widget>[
-                                    Text(
+                                    const Text(
                                       'Score',
                                       style: TextStyle(
                                         color: Colors.white,
@@ -124,7 +123,7 @@ class _Page2State extends State<Page2> {
                                     ),
                                     Text(
                                       '${stats['score']}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold,
@@ -136,28 +135,6 @@ class _Page2State extends State<Page2> {
                             ),
                           ),
                         ],
-=======
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Align(
-          alignment: Alignment.topCenter,
-          child: Card(
-            color: Colors.transparent, // change the color as needed
-            child: Stack(
-              children: <Widget>[
-                _buildGradient(),
-                const Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.all(8.0), // adjust the padding as needed
-                      child: Align(
-                        alignment: Alignment.center, // adjust the alignment as needed
-                        child: CircleAvatar(
-                          radius: 100, // adjust the size of the image
-                          backgroundImage: AssetImage('assets/images/jim.png'), // replace with your image
-                        ),
->>>>>>> cf15c4c670f9afd919ac805c2527f039dde7ee34
                       ),
                     ],
                   ),
@@ -165,7 +142,7 @@ class _Page2State extends State<Page2> {
               ),
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
