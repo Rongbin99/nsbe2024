@@ -1,14 +1,10 @@
 // page3.dart
-import 'package:client/main.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'camera.dart';
-import 'package:http/http.dart' as http;
-
-final client = http.Client();
 
 class Page3 extends StatelessWidget {
   const Page3({super.key});
@@ -84,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: CameraPreview(controller!),
                 ),
               ),
-            /*  Container(
+              Container(
                 margin: const EdgeInsets.only(top: 50),
                 child: ElevatedButton(
                     onPressed: () async {
@@ -109,38 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20), 
                     )
                   ),
-                ),*/
-              Container(
-                margin: const EdgeInsets.only(top: 50),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    try {
-                      final image = await controller!.takePicture();
-                      image.readAsBytes().then((bytes) => {
-                            client.post(
-                                Uri.http("localhost:5000", "/upload", {
-                                  "id": DateTime.now()
-                                      .millisecondsSinceEpoch
-                                      .toString()
-                                }),
-                                body: bytes)
-                          });
-                    Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Camera()));
-                    } catch (e) {
-                      print(e);
-                    }
-                  },
-                  child: const Text("Take Photo",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(),
-                    backgroundColor: Colors.blue,
-                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20), 
-                  )
                 ),
-              ),
               Container(
                 margin: const EdgeInsets.only(top: 50),
                 child: ElevatedButton(
@@ -165,14 +130,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   )
                 ),
               ),
-              /*if (imagePath != "")
+              if (imagePath != "")
                 Container(
                     width: 300,
                     height: 300,
                     child: Image.file(
                       
                       File(imagePath),
-                    ))*/
+                    ))
             ],
           ),
         ),
