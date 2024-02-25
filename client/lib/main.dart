@@ -7,6 +7,7 @@ import 'page2.dart';
 import 'page3.dart';
 import 'page4.dart';
 import 'page5.dart';
+import 'user_lib.dart' as user;
 
 final client = http.Client();
 
@@ -59,6 +60,7 @@ class _MyApp extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(user.getUserID());
     const title = 'Mosaic';
 
     return MaterialApp(
@@ -94,51 +96,72 @@ class _MyApp extends State<MyApp> {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
                 },
               ),),
-              Builder(
-                builder: (context) => 
-              ListTile(
-                title: const Text('Mosaics'),
-                onTap: () {
-                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Page1()));
-                },
-              ),),
-              Builder(
-                builder: (context) =>
-              ListTile(
-                title: const Text('Profile'),
-                onTap: () {
-                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Page2()));
-                },
-              ),),
-              Builder(
-                builder: (context) =>
-              ListTile(
-                title: const Text('Leaderboard'),
-                onTap: () {
-                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Page5()));
-                },
-              ),),
-              Builder(
-                builder: (context) =>
-              ListTile(
-                title: const Text('Camera'),
-                onTap: () {
-                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Page3()));
-                },
-              ),),
-              Builder(
-                builder: (context) =>
-              ListTile(
-                title: const Text('Login'),
-                onTap: () {
-                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Page4()));
-                },
-              ),),
+              (user.getUserID() != -1) ?
+                Builder(
+                  builder: (context) => 
+                ListTile(
+                  title: const Text('Memories'),
+                  onTap: () {
+                    Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Page1()));
+                  },
+                ),) :
+                Container(),
+              (user.getUserID() != -1) ?
+                Builder(
+                  builder: (context) =>
+                ListTile(
+                  title: const Text('Profile'),
+                  onTap: () {
+                    Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Page2()));
+                  }
+                ),) :
+                Container(),
+              (user.getUserID() != -1) ?
+                Builder(
+                  builder: (context) =>
+                ListTile(
+                  title: const Text('Leaderboard'),
+                  onTap: () {
+                    Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Page5()));
+                  },
+                ),) :
+                Container(),
+              (user.getUserID() != -1) ?
+                Builder(
+                  builder: (context) =>
+                ListTile(
+                  title: const Text('Camera'),
+                  onTap: () {
+                    Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Page3()));
+                  },
+                ),) :
+                Container(),
+              (user.getUserID() != -1) ? 
+                Builder(
+                  builder: (context) =>
+                ListTile(
+                  title: const Text('Sign Out'),
+                  onTap: () {
+                    user.setName("");
+                    user.setUserID(-1);
+                    setState(() {});
+                  },
+                ),) :
+                Builder(
+                  builder: (context) =>
+                ListTile(
+                  title: const Text('Login'),
+                  onTap: () {
+                    Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Page4())).then((value) {
+                      setState(() {});
+                    });
+                  },
+                ),),
             ],
           ),
         ),

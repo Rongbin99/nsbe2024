@@ -88,7 +88,7 @@ def get_leaderboard(user_id):
 
 @app.route("/feed")
 def feed():
-    conn = sqlite3.connect("data/app.db")
+    db = get_db()
     cur = db.cursor()
     cur.execute("SELECT * FROM Posts")
     posts = cur.fetchall()

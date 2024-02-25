@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'user_lib.dart' as user;
 
 class Page5 extends StatefulWidget {
   @override
@@ -17,7 +18,7 @@ class _Page5State extends State<Page5> {
   }
 
   fetchData() async {
-    final response = await http.get(Uri.parse('http://127.0.0.1:5000/leaderboard/0'));
+    final response = await http.get(Uri.parse('http://127.0.0.1:5000/leaderboard/${user.getUserID()}'));
 
     if (response.statusCode == 200) {
       setState(() {
