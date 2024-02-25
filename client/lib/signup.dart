@@ -57,7 +57,7 @@ class _SignupPageState extends State<SignupPage> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18),
                               borderSide: BorderSide.none),
-                          fillColor: Colors.teal.withOpacity(0.1),
+                          fillColor: Colors.blue.withOpacity(0.1),
                           filled: true,
                           prefixIcon: const Icon(Icons.account_circle)),
                     ),
@@ -70,7 +70,7 @@ class _SignupPageState extends State<SignupPage> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18),
                               borderSide: BorderSide.none),
-                          fillColor: Colors.teal.withOpacity(0.1),
+                          fillColor: Colors.blue.withOpacity(0.1),
                           filled: true,
                           prefixIcon: const Icon(Icons.alternate_email)),
                     ),
@@ -83,7 +83,7 @@ class _SignupPageState extends State<SignupPage> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(18),
                             borderSide: BorderSide.none),
-                        fillColor: Colors.teal.withOpacity(0.1),
+                        fillColor: Colors.blue.withOpacity(0.1),
                         filled: true,
                         prefixIcon: const Icon(Icons.password),
                       ),
@@ -98,7 +98,7 @@ class _SignupPageState extends State<SignupPage> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(18),
                             borderSide: BorderSide.none),
-                        fillColor: Colors.teal.withOpacity(0.1),
+                        fillColor: Colors.blue.withOpacity(0.1),
                         filled: true,
                         prefixIcon: const Icon(Icons.password),
                       ),
@@ -121,7 +121,7 @@ class _SignupPageState extends State<SignupPage> {
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
                         padding: const EdgeInsets.symmetric(vertical: 16),
-                        backgroundColor: Colors.teal,
+                        backgroundColor: Colors.blue,
                       ),
                     )
                 ),
@@ -135,7 +135,7 @@ class _SignupPageState extends State<SignupPage> {
                           Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
                           Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                         },
-                        child: const Text("Login", style: TextStyle(color: Colors.teal),)
+                        child: const Text("Login", style: TextStyle(color: Colors.blue),)
                     )
                   ],
                 )

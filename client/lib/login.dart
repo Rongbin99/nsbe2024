@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: BorderRadius.circular(18),
                   borderSide: BorderSide.none
               ),
-              fillColor: Colors.teal.withOpacity(0.1),
+              fillColor: Colors.blue.withOpacity(0.1),
               filled: true,
               prefixIcon: const Icon(Icons.account_circle)),
         ),
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(18),
                 borderSide: BorderSide.none),
-            fillColor: Colors.teal.withOpacity(0.1),
+            fillColor: Colors.blue.withOpacity(0.1),
             filled: true,
             prefixIcon: const Icon(Icons.password),
           ),
@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(vertical: 16),
-            backgroundColor: Colors.teal,
+            backgroundColor: Colors.blue,
           ),
           child: const Text(
             "Login",
@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
         );
       },
       child: const Text("Forgot password?",
-        style: TextStyle(color: Colors.teal),
+        style: TextStyle(color: Colors.blue),
       ),
     );
   }
@@ -166,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
               Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
               Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupPage()));
             },
-            child: const Text("Sign Up", style: TextStyle(color: Colors.teal),)
+            child: const Text("Sign Up", style: TextStyle(color: Colors.blue),)
         )
       ],
     );
