@@ -36,7 +36,7 @@ Over the short, and tiresome, span of 24 hours, we are proud to have achieved th
 
 * [X] Successfully program a functioning application that displays the user's outdoor statistics and contributions to the community, AKA M-Score and Mosiac Mastery.
 * [X] Have a functioning integrated Google Maps within the app and a working picture taker via the camera/gallery.
-* [X] Seemless home gallery with posts from various community members.
+* [X] Seamless home gallery with posts from various community members.
 * [X] Develop an intuitive application with Flutter that includes login, user profile, and local wonders.
 * [X] Successfully linked the SQLite server and all the back-end routing.
 * [X] Consume a total of 0 energy drinks despite the urge.
