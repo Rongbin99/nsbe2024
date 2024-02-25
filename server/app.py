@@ -3,6 +3,9 @@ import sqlite3
 from flask import Flask, request, jsonify, send_file, g
 import math
 from flask_cors import CORS
+import os
+import ai
+import cv2
 
 app = Flask(__name__)
 CORS(app)
@@ -85,47 +88,55 @@ def get_leaderboard(user_id):
 
 @app.route("/feed")
 def feed():
-    db = get_db()
+    conn = sqlite3.connect("data/app.db")
     cur = db.cursor()
     cur.execute("SELECT * FROM Posts")
     posts = cur.fetchall()
     return jsonify(posts)
 
 
-    # conn = sqlite3.connect("data/app.db")
-    # cur = conn.cursor()
-    # cur.execute("SELECT * FROM posts;")
-    # entries = cur.fetchall()
-    # cur.close()
-
-    # for entry in entries:
-    #     entries[1] = entries[1].split(";")
-
-    # return entries
-
-
-@app.route("/upload")
+@app.route("/upload", methods=['GET', 'POST'])
 def newpost():
+    
+    print("upload!")
+
+    iidd = request.args.get("id")
+    fname1 = f"static/testimages/{iidd}.jpg"
+    with open(fname1, "wb") as f:
+        f.write(request.data)
+
+    img1 = cv2.imread(fname1)
+
     conn = sqlite3.connect("data/app.db")
-    conn.execute(
-        "INSERT INTO posts VALUES (?, ?);",
-        (request.args.get("id"), request.args.get("image")),
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT * FROM posts",
     )
-    conn.commit()
+    posts = cur.fetchall()
+
+    for (name, images) in posts:
+        for fname2 in images.split(';'):
+            if ai.match(img1, cv2.imread(fname2)):
+                print("match")
+                images += ';'
+                images += fname2
+                print(images)
+                conn.execute(
+                    "UPDATE posts SET images = ? WHERE id = ?",
+                    (images, name),
+                )
+                conn.commit()
+                break
+    else:
+        print("nomatch")
+        conn.execute(
+            "INSERT INTO posts VALUES (?, ?);",
+            (fname1, fname1),
+        )
+        conn.commit()
 
     return ":)"
 
-
-@app.route("/images/upload")
-def newimage():
-    conn = sqlite3.connect("data/app.db")
-    conn.execute(
-        "INSERT INTO posts VALUES (?, ?);",
-        (request.args.get("id"), request.args.get("data")),
-    )
-    conn.commit()
-
-    return ":D"
 
 @app.teardown_appcontext
 def close_db(e=None):
