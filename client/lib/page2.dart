@@ -60,8 +60,13 @@ class _Page2State extends State<Page2> {
                   alignment: Alignment.topCenter,
                   child: Column(
                     children: [
-                      Card(
-                        color: Colors.transparent,                        
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.transparent),
+                          borderRadius: BorderRadius.circular(18.0),
+                          color: Colors.transparent, 
+                        ),
+                                               
                         child: Stack(
                           children: <Widget>[
                             Positioned.fill(
@@ -73,9 +78,13 @@ class _Page2State extends State<Page2> {
                             Positioned.fill(
                               // Add this
                               child: Container(
-                                color: Colors.black.withOpacity(
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(
                                     0.5), // Adjust opacity as needed
-                              ),
+                                  border: Border.all(color: Colors.transparent),
+                                  borderRadius: BorderRadius.circular(18.0),
+                                ),
+                              )
                             ),
                             _buildGradient(),
                             Column(

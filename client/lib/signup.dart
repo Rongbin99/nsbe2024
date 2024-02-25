@@ -116,7 +116,7 @@ class _SignupPageState extends State<SignupPage> {
                       },
                       child: const Text(
                         "Sign up",
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
