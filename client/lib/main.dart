@@ -33,8 +33,19 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyApp();
+}
+
+class _MyApp extends State<MyApp> {
+  
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +73,15 @@ class MyApp extends StatelessWidget {
                   color: Colors.blue,
                 ),
               ),
+               Builder(
+                builder: (context) =>
+              ListTile(
+                title: const Text('Home'),
+                onTap: () {
+                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+                },
+              ),),
               Builder(
                 builder: (context) => 
               ListTile(
