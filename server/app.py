@@ -1,9 +1,32 @@
 import io
 import sqlite3
-from flask import Flask, request
+from flask import Flask, request, jsonify, send_file, g
+import math
 
 app = Flask(__name__)
 
+def haversine(lat1, lon1, lat2, lon2):
+    # Convert latitude and longitude from degrees to radians
+    lat1 = math.radians(lat1)
+    lon1 = math.radians(lon1)
+    lat2 = math.radians(lat2)
+    lon2 = math.radians(lon2)
+
+    # Difference in coordinates
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+
+    # Haversine formula
+    a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+    # Radius of Earth in kilometers
+    R = 6371.0
+
+    # Calculate distance
+    distance = R * c
+
+    return distance
 
 @app.route("/")
 def home():
@@ -27,13 +50,22 @@ def user_profile(user_id):
     else:
         return jsonify({"UserID": user[0], "Name": user[1], "Score": user[2]})
     
-@app.route('/leaderboard')
-def get_leaderboard():
+@app.route('/leaderboard/<int:user_id>')
+def get_leaderboard(user_id):
     db = get_db()
     cur = db.cursor()
     cur.execute("SELECT * FROM Users ORDER BY Score DESC")
-    users = cur.fetchall()
-    return jsonify(users)
+    topusers = cur.fetchall()
+    cur.execute("SELECT * FROM Users WHERE UserID=?", (user_id,))
+    user = cur.fetchone()
+
+    outlist = []
+
+    for topuser in topusers:
+        if topuser[0] != user_id and haversine(topuser[3], topuser[4], user[3], user[4]) <= 5:
+            outlist.append(topuser)
+
+    return jsonify(outlist)
 
 
 @app.route("/feed")

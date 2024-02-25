@@ -90,7 +90,42 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+<<<<<<< HEAD
+  file_selector_linux:
+    dependency: transitive
+    description:
+      name: file_selector_linux
+      sha256: "045d372bf19b02aeb69cacf8b4009555fb5f6f0b7ad8016e5f46dd1387ddd492"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.2+1"
+  file_selector_macos:
+    dependency: transitive
+    description:
+      name: file_selector_macos
+      sha256: b15c3da8bd4908b9918111fa486903f5808e388b8d1c559949f584725a6594d6
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.3+3"
+  file_selector_platform_interface:
+    dependency: transitive
+    description:
+      name: file_selector_platform_interface
+      sha256: a3994c26f10378a039faa11de174d7b78eb8f79e4dd0af2a451410c1a5c3f66b
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.6.2"
+  file_selector_windows:
+    dependency: transitive
+    description:
+      name: file_selector_windows
+      sha256: d3547240c20cabf205c7c7f01a50ecdbc413755814d6677f3cb366f04abcead0
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.3+1"
 =======
+=======
+>>>>>>> cf15c4c670f9afd919ac805c2527f039dde7ee34
   fixnum:
     dependency: transitive
     description:
@@ -99,7 +134,10 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+<<<<<<< HEAD
+=======
 >>>>>>> da23f403b3801e5b6fa4cff770ce0d07e8401c9c
+>>>>>>> cf15c4c670f9afd919ac805c2527f039dde7ee34
   flutter:
     dependency: "direct main"
     description: flutter
@@ -196,11 +234,7 @@ packages:
     source: hosted
     version: "0.15.4"
   http:
-<<<<<<< HEAD
-    dependency: transitive
-=======
     dependency: "direct main"
->>>>>>> 8e0a26c45027d92cc374f4ca569e8053821aa6a8
     description:
       name: http
       sha256: "761a297c042deedc1ffbb156d6e2af13886bb305c2a343a4d972504cd67dd938"
@@ -215,7 +249,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
-<<<<<<< HEAD
+  image_collage:
+    dependency: "direct main"
+    description:
+      name: image_collage
+      sha256: "8ca7e5b6beb50c164ee16efe7a7838a8f3c0a0127738a5aa8db1ce21ad0ee891"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
   image_picker:
     dependency: "direct main"
     description:
@@ -280,16 +321,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
-=======
-  image_collage:
-    dependency: "direct main"
-    description:
-      name: image_collage
-      sha256: "8ca7e5b6beb50c164ee16efe7a7838a8f3c0a0127738a5aa8db1ce21ad0ee891"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.4"
->>>>>>> 8e0a26c45027d92cc374f4ca569e8053821aa6a8
   js:
     dependency: transitive
     description:
