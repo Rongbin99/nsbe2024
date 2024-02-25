@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'signup.dart';
 import 'page2.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,6 +12,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  String errorMessage = '';
+
   @override
   void initState() {
     super.initState();
@@ -52,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
+          controller: usernameController,
           decoration: InputDecoration(
               hintText: "Username",
               border: OutlineInputBorder(
@@ -64,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         const SizedBox(height: 10),
         TextField(
+          controller: passwordController,
           decoration: InputDecoration(
             hintText: "Password",
             border: OutlineInputBorder(
@@ -76,10 +84,33 @@ class _LoginPageState extends State<LoginPage> {
           obscureText: true,
         ),
         const SizedBox(height: 10),
+        Text(
+          errorMessage,
+          style: TextStyle(color: Colors.red),
+        ),
+        const SizedBox(height: 10),
         ElevatedButton(
-          onPressed: () {
-            Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Page2()));
+          onPressed: () async {
+            var username = usernameController.text;
+            var password = passwordController.text;
+
+            if (username == "" || password == "") {
+              return;
+            }
+
+            var url = Uri.parse('http://127.0.0.1:5000/login/$username/$password'); // replace with your URL
+            var response = await http.get(url);
+
+            var success = jsonDecode(response.body)["status"];
+
+            if (success == 'success') {
+              Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Page2()));
+            } else {
+              setState(() {
+                errorMessage = 'Username or password invalid';
+              });
+            }
           },
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),

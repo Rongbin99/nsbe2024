@@ -51,6 +51,19 @@ def user_profile(user_id):
         return jsonify({"error": "User not found"}), 404
     else:
         return jsonify({"UserID": user[0], "Name": user[1], "Score": user[2]})
+
+@app.route('/login/<string:username>/<string:password>')
+def login(username, password):
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM Users WHERE Name=?", (username,))
+    user = cur.fetchone()
+    print(user)
+    
+    if user is None or user[5] != password:
+        return jsonify({"status": "fail"})
+    else:
+        return jsonify({"status": "success"})
     
 @app.route('/leaderboard/<int:user_id>')
 def get_leaderboard(user_id):
