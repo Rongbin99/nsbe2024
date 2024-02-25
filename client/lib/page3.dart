@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class Page3 extends StatelessWidget {
   @override
@@ -86,6 +87,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
                   },
                   child: Text("Take Photo")),
+              TextButton(
+                onPressed: () async {
+                  final picker = ImagePicker();
+                  final pickedFile = await picker.getImage(source: ImageSource.gallery);
+                  if (pickedFile != null) {
+                    setState(() {
+                      imagePath = pickedFile.path;
+                    });
+                  }
+                },
+                child: Text("Pick Image from Gallery"),
+              ),
               if (imagePath != "")
                 Container(
                     width: 300,

@@ -37,29 +37,30 @@ class _Page1State extends State<Page1> {
     mapController = controller;
   }
 
-void _onMarkerTapped() {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return Dialog(
-        child: Container(
-          width: 120, // specify the width
-          height: 150, // specify the height
-          child: Column(
-            children: [
-              Container(
-                width: 100, // specify the width
-                height: 100, // specify the height
-                child: Image.asset('assets/images/jim.png'),
-              ),
-              Text('This is a custom marker!'),
-            ],
+  void _onMarkerTapped(String assetName) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          child: Container(
+            width: 150, // specify the width
+            height: 150, // specify the height
+            child: Column(
+              children: [
+                Container(
+                  width: 100, // specify the width
+                  height: 100, // specify the height
+                  child: Image.asset(assetName),
+                ),
+                Text(''),
+              ],
+            ),
           ),
-        ),
-      );
-    },
-  );
-}
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,11 +78,19 @@ void _onMarkerTapped() {
                 zoom: 11.0,
               ),
               markers: {
-                Marker(
+                CustomMarker(
                   markerId: MarkerId('UofT'),
                   position: LatLng(43.66069590096232, -79.3964813015131),
-                  onTap: _onMarkerTapped,
+                  onTap: () => _onMarkerTapped('assets/images/jim.png'),
                   icon: snapshot.data ?? BitmapDescriptor.defaultMarker,
+                  assetName: 'assets/images/jim.png',
+                ),
+                CustomMarker(
+                  markerId: MarkerId('Evan House'),
+                  position: LatLng(43.81482894945967, -79.32526497341495),
+                  onTap: () => _onMarkerTapped('assets/images/jim.png'),
+                  icon: snapshot.data ?? BitmapDescriptor.defaultMarker,
+                  assetName: 'assets/images/jim.png',
                 ),
               },
             );
@@ -92,4 +101,21 @@ void _onMarkerTapped() {
       ),
     );
   }
+}
+
+class CustomMarker extends Marker {
+  final String assetName;
+
+  CustomMarker({
+    required MarkerId markerId,
+    required LatLng position,
+    required this.assetName,
+    BitmapDescriptor? icon,
+    VoidCallback? onTap,
+  }) : super(
+          markerId: markerId,
+          position: position,
+          // icon: icon,
+          onTap: onTap,
+        );
 }
