@@ -98,7 +98,57 @@ class _LoginPageState extends State<LoginPage> {
   _forgotPassword(context) {
     return TextButton(
       onPressed: () {
-
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("Forgot Password?"),
+              content: const Text("Enter your email address and we will send you a link to reset your password."),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text("Email Sent"),
+                          content: const Text("An email has been sent to your email address. Please click the link in the email to reset your password."),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text("WOMP WOMP"),
+                                      content: Image.asset("images/).png"),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            Navigator.pop(context);
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text("LOL"),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: const Text("OK"),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: const Text("Confirm"),
+                ),
+              ],
+            );
+          },
+        );
       },
       child: const Text("Forgot password?",
         style: TextStyle(color: Colors.teal),
