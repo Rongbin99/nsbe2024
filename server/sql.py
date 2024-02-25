@@ -17,7 +17,8 @@ c.execute('''
         Name TEXT NOT NULL,
         Score INTEGER,
         Latitude REAL,
-        Longitude REAL
+        Longitude REAL,
+        Password TEXT NOT NULL
     )
 ''')
 
@@ -40,24 +41,24 @@ c.execute("INSERT INTO Posts (UserID, PostID, PostDesc, ImagePath) VALUES (?, ?,
           (0, 85, "W postig2212413", "c1.jpg"))
 
 # user on website
-c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude) VALUES (?, ?, ?, ?, ?)", 
-          (0, 'User1', 5, 43.66077989564984, -79.39651244065237))
+c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude, Password) VALUES (?, ?, ?, ?, ?, ?)", 
+          (0, 'User1', 5, 43.66077989564984, -79.39651244065237, "123"))
 
 # users within 5km
-c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude) VALUES (?, ?, ?, ?, ?)", 
-          (1, 'User2', 3, 43.65646578952676, -79.45241136895724))
-c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude) VALUES (?, ?, ?, ?, ?)", 
-          (3, 'User4', 4, 43.66292275302812, -79.39648735564788))
-c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude) VALUES (?, ?, ?, ?, ?)", 
-          (8, 'User5', 9283, 43.677897944323306, -79.38631594883611))
-c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude) VALUES (?, ?, ?, ?, ?)", 
-          (2348, 'User6', -1, 43.64318838064361, -79.3689840768619))
+c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude, Password) VALUES (?, ?, ?, ?, ?, ?)", 
+          (1, 'User2', 3, 43.65646578952676, -79.45241136895724, "a"))
+c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude, Password) VALUES (?, ?, ?, ?, ?, ?)", 
+          (3, 'User4', 4, 43.66292275302812, -79.39648735564788, "a"))
+c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude, Password) VALUES (?, ?, ?, ?, ?, ?)", 
+          (8, 'User5', 9283, 43.677897944323306, -79.38631594883611, "a"))
+c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude, Password) VALUES (?, ?, ?, ?, ?, ?)", 
+          (2348, 'User6', -1, 43.64318838064361, -79.3689840768619, "a"))
 
 # users outside 5km
-c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude) VALUES (?, ?, ?, ?, ?)", 
-          (4, 'User7', 1, -3.3746612447567244, -40.78137606031826))
-c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude) VALUES (?, ?, ?, ?, ?)", 
-          (2, 'User3', 4, 43.81405921356005, -79.32505081401312))
+c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude, Password) VALUES (?, ?, ?, ?, ?, ?)", 
+          (4, 'User7', 1, -3.3746612447567244, -40.78137606031826, "a"))
+c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude, Password) VALUES (?, ?, ?, ?, ?, ?)", 
+          (2, 'User3', 4, 43.81405921356005, -79.32505081401312, "a"))
 
 # Commit the changes and close the connection
 conn.commit()
