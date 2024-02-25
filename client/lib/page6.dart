@@ -71,15 +71,29 @@ class _Page6State extends State<Page6> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: _searchController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Enter Address',
                 border: OutlineInputBorder(),
+              ),
+              style: const TextStyle(
+                fontSize: 18.0,
+                color: Colors.white,
               ),
             ),
           ),
           ElevatedButton(
             onPressed: _searchAddress,
-            child: Text('Search'),
+            style: ElevatedButton.styleFrom(
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+            backgroundColor: Colors.blue,
+          ),
+            child: const Text('Search',
+            style: TextStyle(fontSize: 20, color: Colors.white),
+            ),
+          ),
+          Container(
+            height: 10.0,
           ),
           Expanded(
             child: GoogleMap(
