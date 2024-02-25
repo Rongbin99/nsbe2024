@@ -88,7 +88,7 @@ class _Page2State extends State<Page2> {
                                     child: CircleAvatar(
                                       radius: 100,
                                       backgroundImage:
-                                          AssetImage('assets/images/).png'),
+                                          AssetImage('/images/).png'),
                                     ),
                                   ),
                                 ),
