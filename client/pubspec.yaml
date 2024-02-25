@@ -21,6 +21,7 @@ dependencies:
   path_provider: ^2.0.9
   path: ^1.8.0
   image_picker: ^0.8.4+4 
+  syncfusion_flutter_gauges: ^24.2.7
 
 
 dev_dependencies:
@@ -34,3 +35,4 @@ flutter:
     - assets/images/jim.png
     - assets/images/01-cn-tower.jpg
     - assets/background.png
+    - assets/images/).png

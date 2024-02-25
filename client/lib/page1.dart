@@ -37,30 +37,41 @@ class _Page1State extends State<Page1> {
     mapController = controller;
   }
 
-  void _onMarkerTapped(String assetName) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          child: Container(
-            width: 150, // specify the width
-            height: 150, // specify the height
-            child: Column(
-              children: [
-                Container(
-                  width: 100, // specify the width
-                  height: 100, // specify the height
-                  child: Image.asset(assetName),
-                ),
-                Text(''),
-              ],
+void _onMarkerTapped(String assetName) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      bool isImage = true;
+      return StatefulBuilder(
+        builder: (context, setState) {
+          return Dialog(
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isImage = !isImage;
+                });
+              },
+              child: isImage
+                  ? Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Image.asset(assetName),
+                    )
+                  : Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          'Your information here',
+                          style: TextStyle(fontSize: 24),
+                        ),
+                      ),
+                    ),
             ),
-          ),
-        );
-      },
-    );
-  }
-
+          );
+        },
+      );
+    },
+  );
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(

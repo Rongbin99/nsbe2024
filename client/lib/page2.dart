@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'dart:math';
 
 Widget _buildGradient() {
   return Positioned.fill(
@@ -22,6 +24,7 @@ class Page2 extends StatefulWidget {
 
 class _Page2State extends State<Page2> {
   Future<Map<String, int>>? statsFuture;
+  int _randomValue = Random().nextInt(101); // Define your random value here
 
   @override
   void initState() {
@@ -49,91 +52,164 @@ class _Page2State extends State<Page2> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             final stats = snapshot.data!;
-            return Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Card(
-                  color: Colors.transparent,
-                  child: Stack(
-                    children: <Widget>[
-                      _buildGradient(),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: CircleAvatar(
-                                radius: 100,
-                                backgroundImage: AssetImage('assets/images/jim.png'),
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Column(
+                    children: [
+                      Card(
+                        color: Colors.transparent,
+                        child: Stack(
+                          children: <Widget>[
+                            Positioned.fill(
+                              child: Image.asset(
+                                'assets/images/01-cn-tower.jpg',
+                                fit: BoxFit.cover,
                               ),
                             ),
-                          ),
-                          const ListTile(
-                            title: Text(
-                              'Profile',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                            Positioned.fill(
+                              // Add this
+                              child: Container(
+                                color: Colors.black.withOpacity(
+                                    0.5), // Adjust opacity as needed
                               ),
                             ),
-                            subtitle: Text(
-                              'Hi :)',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            _buildGradient(),
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Column(
-                                  children: <Widget>[
-                                    const Text(
-                                      'Total Images Shared',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      ),
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: CircleAvatar(
+                                      radius: 100,
+                                      backgroundImage:
+                                          AssetImage('assets/images/).png'),
                                     ),
-                                    Text(
-                                      '${stats['totalImagesShared']}',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                                Column(
-                                  children: <Widget>[
-                                    const Text(
-                                      'Score',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      ),
+                                const ListTile(
+                                  title: Text(
+                                    'Profile',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    Text(
-                                      '${stats['score']}',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                  ),
+                                  subtitle: Text(
+                                    'Hi :)',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
                                     ),
-                                  ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      Column(
+                                        children: <Widget>[
+                                          const Text(
+                                            'Total Images Shared',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          Text(
+                                            '${stats['totalImagesShared']}',
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        children: <Widget>[
+                                          const Text(
+                                            'Score',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          Text(
+                                            '${stats['score']}',
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
+                          ],
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            height: 40,
                           ),
+                          Center(
+                            child: Text(
+                              'GoMommy XP: $_randomValue%',
+                              style: const TextStyle(
+                                  decorationColor: Colors.white,
+                                  fontSize: 36,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  overflow: TextOverflow.ellipsis),
+                            ),
+                          ),
+                          Container(
+                            height: 40,
+                          ),
+                          Center(
+                            child: SfRadialGauge(axes: <RadialAxis>[
+                              RadialAxis(
+                                  minimum: 0,
+                                  maximum: 100,
+                                  showLabels: false,
+                                  showTicks: false,
+                                  axisLineStyle: const AxisLineStyle(
+                                    thickness: 0.25,
+                                    cornerStyle: CornerStyle.bothCurve,
+                                    thicknessUnit: GaugeSizeUnit.factor,
+                                  ),
+                                  pointers: <GaugePointer>[
+                                    RangePointer(
+                                      value: _randomValue.toDouble(),
+                                      cornerStyle: CornerStyle.bothCurve,
+                                      width: 0.25,
+                                      color: Colors.blue[100],
+                                      sizeUnit: GaugeSizeUnit.factor,
+                                    ),
+                                    NeedlePointer(
+                                      // Add this
+                                      value: _randomValue.toDouble(),
+                                      needleLength: 0.6,
+                                      lengthUnit: GaugeSizeUnit.factor,
+                                      needleColor: Colors.black,
+                                    ),
+                                  ],
+                                  annotations: const <GaugeAnnotation>[])
+                            ]),
+                          )
                         ],
                       ),
                     ],
