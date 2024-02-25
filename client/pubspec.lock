@@ -216,6 +216,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.15.4"
+  http:
+    dependency: "direct main"
+    description:
+      name: http
+      sha256: "761a297c042deedc1ffbb156d6e2af13886bb305c2a343a4d972504cd67dd938"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
   http_parser:
     dependency: transitive
     description:
@@ -224,6 +232,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  image_collage:
+    dependency: "direct main"
+    description:
+      name: image_collage
+      sha256: "8ca7e5b6beb50c164ee16efe7a7838a8f3c0a0127738a5aa8db1ce21ad0ee891"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
   js:
     dependency: transitive
     description:
