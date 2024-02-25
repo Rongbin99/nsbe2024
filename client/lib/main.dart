@@ -21,13 +21,13 @@ class Post {
   Post({required this.username, required this.id, required this.desc, required this.imagepath});
   
   static Future<Post> createFromJson(List<dynamic> raw) async {
-    Post post = Post(username: "LASAGNA", id: raw[1], desc: raw[2], imagepath: 'http://127.0.0.1:5000/static/testimages/${raw[3]}');
+    Post post = Post(username: "LASAGNA", id: raw[1], desc: '${raw[3]} ${raw[4]}', imagepath: 'http://127.0.0.1:5000/static/testimages/${raw[2]}');
     await post.updateFromResponse(raw);
     return post;
   }
   
   factory Post.fromJson(List<dynamic> raw) {
-    Post post = Post(username: "LASAGNA", id: raw[1], desc: raw[2], imagepath: 'http://127.0.0.1:5000/static/testimages/${raw[3]}');
+    Post post = Post(username: "LASAGNA", id: raw[1], imagepath: 'http://127.0.0.1:5000/static/testimages/${raw[2]}', desc: '${raw[3]} ${raw[4]}');
 
     post.updateFromResponse(raw);
 

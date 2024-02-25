@@ -27,18 +27,19 @@ c.execute('''
     CREATE TABLE Posts (
         UserID INTEGER,
         PostID INTEGER PRIMARY KEY,
-        PostDesc TEXT,
         ImagePath TEXT,
+        Latitude REAL,
+        Longitude REAL,
         FOREIGN KEY(UserID) REFERENCES Users(UserID)
     )
 ''')
 
-c.execute("INSERT INTO Posts (UserID, PostID, PostDesc, ImagePath) VALUES (?, ?, ?, ?)", 
-          (0, 986512548, "W postig", "a1.jpg"))
-c.execute("INSERT INTO Posts (UserID, PostID, PostDesc, ImagePath) VALUES (?, ?, ?, ?)", 
-          (0, 845265945, "W postig22", "b1.jpg"))
-c.execute("INSERT INTO Posts (UserID, PostID, PostDesc, ImagePath) VALUES (?, ?, ?, ?)", 
-          (0, 85, "W postig2212413", "c1.jpg"))
+c.execute("INSERT INTO Posts (UserID, PostID, ImagePath, Latitude, Longitude) VALUES (?, ?, ?, ?, ?)", 
+          (0, 986512548, "a1.jpg", 43.8, -79.39651244065237))
+c.execute("INSERT INTO Posts (UserID, PostID, ImagePath, Latitude, Longitude) VALUES (?, ?, ?, ?, ?)", 
+          (0, 845265945, "b1.jpg", 43.3, -79.39651244065237))
+c.execute("INSERT INTO Posts (UserID, PostID, ImagePath, Latitude, Longitude) VALUES (?, ?, ?, ?, ?)", 
+          (0, 85, "c1.jpg", 43.1, -79.39651244065237))
 
 # user on website
 c.execute("INSERT INTO Users (UserID, Name, Score, Latitude, Longitude, Password) VALUES (?, ?, ?, ?, ?, ?)", 
