@@ -1,7 +1,6 @@
 // main.dart
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'page1.dart';
 import 'page2.dart';
@@ -113,7 +112,7 @@ class _MyApp extends State<MyApp> {
                 title: const Text('Leaderboard'),
                 onTap: () {
                   Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Page4()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Page5()));
                 },
               ),),
               Builder(
@@ -123,15 +122,6 @@ class _MyApp extends State<MyApp> {
                 onTap: () {
                   Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Page3()));
-                },
-              ),),
-              Builder(
-                builder: (context) =>
-              ListTile(
-                title: const Text('Leaderboard'),
-                onTap: () {
-                  Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Page5()));
                 },
               ),),
               Builder(
