@@ -32,7 +32,7 @@ class _Page5State extends State<Page5> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Leaderboard'),
+        title: const Text('Leaderboard'),
       ),
       body: ListView.builder(
         itemCount: leaderboardData.length,
