@@ -95,7 +95,7 @@ def get_leaderboard(user_id):
     outlist = []
 
     for topuser in topusers:
-        if topuser[0] != user_id and haversine(topuser[3], topuser[4], user[3], user[4]) <= 5:
+        if haversine(topuser[3], topuser[4], user[3], user[4]) <= 5:
             outlist.append(topuser)
 
     return jsonify(outlist)

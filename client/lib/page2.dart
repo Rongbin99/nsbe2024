@@ -217,7 +217,7 @@ class _Page2State extends State<Page2> {
                                   ),
                                   pointers: <GaugePointer>[
                                     RangePointer(
-                                      value: stats['mastery']! / 100,
+                                      value: stats['mastery']! / 1.0,
                                       cornerStyle: CornerStyle.bothCurve,
                                       width: 0.25,
                                       color: Colors.blue[100],
@@ -225,7 +225,7 @@ class _Page2State extends State<Page2> {
                                     ),
                                     NeedlePointer(
                                       // Add this
-                                      value: stats['mastery']! / 100,
+                                      value: stats['mastery']! / 1.0,
                                       needleLength: 0.6,
                                       lengthUnit: GaugeSizeUnit.factor,
                                       needleColor: Colors.black,
