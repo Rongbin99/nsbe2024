@@ -39,4 +39,5 @@ flutter:
     - assets/images/).png
     - assets/map_style.json
     - assets/pfp.jpg
-    - assets/logo-1.png
+    - assets/logo-01.png
+    - assets/logo-01.gif
